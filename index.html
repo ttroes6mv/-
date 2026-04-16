@@ -34,7 +34,6 @@
         transition: filter 3s ease;
     }
 
-    /* 爆発エフェクト用のフラッシュ層 */
     #explosion-flash {
         position: absolute;
         inset: 0;
@@ -44,16 +43,15 @@
         pointer-events: none;
     }
 
-    /* メッセージウィンドウ */
     #msg-window {
         display: none;
         position: absolute;
-        bottom: 10px; /* 少し下げる */
+        bottom: 10px; 
         left: 50%;
         transform: translateX(-50%);
         width: 90%;
         max-width: 560px;
-        height: 140px; /* キャラに被らないように調整 */
+        height: 150px; 
         background: linear-gradient(to bottom, rgba(0, 0, 40, 0.95), rgba(0, 0, 10, 0.98));
         border: 4px double #d4af37;
         border-radius: 8px;
@@ -79,7 +77,6 @@
 
     @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-    /* 画面の揺れアニメーション */
     .shake {
         animation: shakeEffect 0.5s ease-in-out;
     }
@@ -92,7 +89,6 @@
         100% { transform: translate(0,0); }
     }
 
-    /* スタッフロール */
     #staff-roll {
         display: none;
         position: absolute;
@@ -112,8 +108,8 @@
         font-size: 22px;
     }
 
-    .animate-roll { animation: scrollUp 18s linear forwards; }
-    @keyframes scrollUp { to { top: -150%; } }
+    .animate-roll { animation: scrollUp 20s linear forwards; } /* 少し長くしました */
+    @keyframes scrollUp { to { top: -180%; } }
 
     #start-screen {
         position: absolute;
@@ -128,15 +124,9 @@
         font-size: 24px;
     }
 
-    /* スマホ向けのフォントサイズ・高さ・位置の限界調整 */
     @media (max-width: 480px) {
-        #msg-window { 
-            font-size: 15px; /* 文字を1px小さく */
-            height: 120px;   /* 高さを極限まで圧縮 */
-            padding: 10px 15px; 
-            bottom: 5px;     /* 画面の最下部へ */
-        }
-        #msg-cursor { bottom: 6px; right: 15px; font-size: 14px; }
+        #msg-window { font-size: 16px; height: 130px; padding: 12px 15px; }
+        #msg-cursor { bottom: 8px; right: 15px; font-size: 14px; }
     }
 </style>
 </head>
@@ -152,13 +142,20 @@
     
     <div id="staff-roll">
         <div id="roll-content">
-            <p style="margin-bottom: 80px; color: #d4af37; font-size: 1.2em;">- CAST & STAFF -</p>
+            <p style="margin-bottom: 80px; color: #d4af37; font-size: 1.2em;">- STAFF ROLL -</p>
+            
             <p>Original Idea<br><strong>やわT</strong></p>
             <br><br>
-            <p>Executive Director<br><strong>トトローズ</strong></p>
+            
+            <p>Those Who Remembered<br><strong>前ちょ</strong></p>
             <br><br>
+            
+            <p>Producer<br><strong>トトローズ</strong></p>
+            <br><br>
+            
             <p>Special Thanks<br><strong>MORIKO<br>YUKIKO</strong></p>
-            <br><br><br><br>
+            
+            <br><br><br><br><br>
             <p style="letter-spacing: 15px; font-size: 32px; color: #d4af37;">FIN</p>
         </div>
     </div>
@@ -227,7 +224,7 @@
         ctx.beginPath(); ctx.arc(sx+10, sy+5, 4.5, 0, Math.PI*2); ctx.fill();
     }
 
-    let player = { worldY: 12 * TILE_SIZE, isMoving: false };
+    let player = { worldY: 12 * TILE_SIZE, isMoving: false, isMovingDown: false };
     let frameCount = 0;
 
     function gameLoop() {
@@ -239,9 +236,15 @@
                 player.isMoving = false;
                 setTimeout(startMonologue, 1000);
             }
+        } 
+        else if (player.isMovingDown) {
+            player.worldY += 1.0; 
+            if (player.worldY >= 6 * TILE_SIZE) { 
+                player.worldY = 6 * TILE_SIZE;
+                player.isMovingDown = false;
+            }
         }
         
-        // カメラ位置を少し下にずらすことで、スライムを画面の上の方に配置しウィンドウ被りを回避（+45の部分）
         const targetCamY = player.worldY - (480 / 2) + (TILE_SIZE / 2) + 45;
         const camY = Math.max(0, Math.min(targetCamY, MAP_ROWS * TILE_SIZE - 480));
         
@@ -257,7 +260,10 @@
                 }
             }
         }
-        drawSlime(player.worldX - TILE_SIZE/2 || 320 - 32, player.worldY - camY, player.isMoving ? Math.sin(frameCount * 0.25) * 5 : 0);
+        
+        let bounce = (player.isMoving || player.isMovingDown) ? Math.sin(frameCount * 0.25) * 5 : 0;
+        drawSlime(player.worldX - TILE_SIZE/2 || 320 - 32, player.worldY - camY, bounce);
+        
         requestAnimationFrame(gameLoop);
     }
 
@@ -274,7 +280,8 @@
         "いや、まだピロロントッペが\nのこっているはずだ",
         "ペロロントッペ〜！！",
         "explosion_trigger",
-        "おわった･･･\nすべておわったんだ･･･\n\nなにもかも"
+        "おわった･･･\nすべておわったんだ･･･",
+        "なにもかも"
     ];
 
     async function typeWriter(text) {
@@ -307,6 +314,23 @@
             await typeWriter(line);
         }
         msgWindow.style.display = 'none';
+
+        player.isMovingDown = true;
+        
+        await new Promise(r => {
+            const check = setInterval(() => {
+                if (!player.isMovingDown) {
+                    clearInterval(check);
+                    r();
+                }
+            }, 50);
+        });
+
+        await new Promise(r => setTimeout(r, 800));
+
+        canvas.classList.add('sepia-mode');
+        await new Promise(r => setTimeout(r, 2000));
+
         staffRoll.style.display = 'block';
         rollContent.classList.add('animate-roll');
     }
