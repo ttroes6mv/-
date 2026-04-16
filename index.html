@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ポニョロンポッペの儀式 - PS1 High-Res RPG Edition</title>
+<title>ポニョロンポッペの儀式 - 完結編</title>
 <style>
     body {
         margin: 0;
@@ -16,7 +16,6 @@
         font-family: 'Hiragino Mincho ProN', 'MS PMincho', serif;
     }
 
-    /* スマホの画面にピタッと合わせるためのレスポンシブ設定 */
     #game-container {
         position: relative;
         width: 100vw;
@@ -35,82 +34,91 @@
         transition: filter 3s ease;
     }
 
+    /* 爆発エフェクト用のフラッシュ層 */
+    #explosion-flash {
+        position: absolute;
+        inset: 0;
+        background: #fff;
+        opacity: 0;
+        z-index: 150;
+        pointer-events: none;
+    }
+
+    /* メッセージウィンドウ */
     #msg-window {
         display: none;
         position: absolute;
-        bottom: 20px;
+        bottom: 10px; /* 少し下げる */
         left: 50%;
         transform: translateX(-50%);
-        width: 90%; /* スマホでも見やすいようにパーセント指定 */
+        width: 90%;
         max-width: 560px;
-        height: 140px;
-        background: linear-gradient(to bottom, rgba(0, 0, 40, 0.9), rgba(0, 0, 10, 0.95));
+        height: 140px; /* キャラに被らないように調整 */
+        background: linear-gradient(to bottom, rgba(0, 0, 40, 0.95), rgba(0, 0, 10, 0.98));
         border: 4px double #d4af37;
         border-radius: 8px;
         color: #fff;
-        padding: 20px;
+        padding: 15px 20px; 
         box-sizing: border-box;
-        font-size: 24px;
-        line-height: 1.5;
+        font-size: 20px; 
+        line-height: 1.5; 
         z-index: 200;
         text-shadow: 2px 2px 2px #000;
-        cursor: pointer; /* クリックできることを暗に提示 */
+        cursor: pointer;
     }
 
-    /* テキスト表示エリア */
-    #msg-text {
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-
-    /* 送り待ちの点滅カーソル */
     #msg-cursor {
         display: none;
         position: absolute;
-        bottom: 15px;
-        right: 25px;
-        font-size: 20px;
+        bottom: 12px;
+        right: 20px;
+        font-size: 18px;
         color: #d4af37;
         animation: blink 1s infinite;
     }
 
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    /* 画面の揺れアニメーション */
+    .shake {
+        animation: shakeEffect 0.5s ease-in-out;
+    }
+    @keyframes shakeEffect {
+        0% { transform: translate(0,0); }
+        10% { transform: translate(-10px, -10px); }
+        30% { transform: translate(10px, 10px); }
+        50% { transform: translate(-10px, 10px); }
+        70% { transform: translate(10px, -10px); }
+        100% { transform: translate(0,0); }
     }
 
+    /* スタッフロール */
     #staff-roll {
         display: none;
         position: absolute;
         inset: 0;
-        background: rgba(40, 20, 10, 0.3);
+        background: rgba(40, 20, 10, 0.4);
         color: #fff;
         z-index: 300;
         text-align: center;
         overflow: hidden;
-        text-shadow: 2px 2px 4px #000;
+        backdrop-filter: sepia(1) brightness(0.6);
     }
 
     #roll-content {
         position: absolute;
         width: 100%;
         top: 100%;
-        font-size: 24px;
+        font-size: 22px;
     }
 
-    .animate-roll {
-        animation: scrollUp 15s linear forwards;
-    }
-
-    @keyframes scrollUp {
-        to { top: -120%; }
-    }
+    .animate-roll { animation: scrollUp 18s linear forwards; }
+    @keyframes scrollUp { to { top: -150%; } }
 
     #start-screen {
         position: absolute;
         inset: 0;
-        background: rgba(0,0,0,0.9);
+        background: #000;
         color: #fff;
         display: flex;
         justify-content: center;
@@ -118,17 +126,17 @@
         cursor: pointer;
         z-index: 500;
         font-size: 24px;
-        letter-spacing: 2px;
     }
 
-    .sepia-mode {
-        filter: sepia(0.8) contrast(1.2) brightness(0.5);
-    }
-
-    /* スマホ向けのフォントサイズ微調整 */
+    /* スマホ向けのフォントサイズ・高さ・位置の限界調整 */
     @media (max-width: 480px) {
-        #msg-window { font-size: 18px; height: 120px; }
-        #msg-cursor { font-size: 16px; bottom: 10px; right: 15px; }
+        #msg-window { 
+            font-size: 15px; /* 文字を1px小さく */
+            height: 120px;   /* 高さを極限まで圧縮 */
+            padding: 10px 15px; 
+            bottom: 5px;     /* 画面の最下部へ */
+        }
+        #msg-cursor { bottom: 6px; right: 15px; font-size: 14px; }
     }
 </style>
 </head>
@@ -136,7 +144,7 @@
 
 <div id="game-container">
     <canvas id="gameCanvas" width="640" height="480"></canvas>
-    
+    <div id="explosion-flash"></div>
     <div id="msg-window">
         <span id="msg-text"></span>
         <span id="msg-cursor">▼</span>
@@ -144,16 +152,18 @@
     
     <div id="staff-roll">
         <div id="roll-content">
-            <p style="margin-bottom: 80px; color: #d4af37;">- CAST & STAFF -</p>
+            <p style="margin-bottom: 80px; color: #d4af37; font-size: 1.2em;">- CAST & STAFF -</p>
             <p>Original Idea<br><strong>やわT</strong></p>
             <br><br>
             <p>Executive Director<br><strong>トトローズ</strong></p>
+            <br><br>
+            <p>Special Thanks<br><strong>MORIKO<br>YUKIKO</strong></p>
             <br><br><br><br>
-            <p style="letter-spacing: 12px; font-size: 32px; color: #d4af37;">FIN</p>
+            <p style="letter-spacing: 15px; font-size: 32px; color: #d4af37;">FIN</p>
         </div>
     </div>
 
-    <div id="start-screen">画面をタップしてスタート</div>
+    <div id="start-screen">画面をタップして開始</div>
 </div>
 
 <script>
@@ -166,27 +176,18 @@
     const rollContent = document.getElementById('roll-content');
     const startScreen = document.getElementById('start-screen');
     const gameContainer = document.getElementById('game-container');
+    const flash = document.getElementById('explosion-flash');
 
     const TILE_SIZE = 64; 
     const MAP_COLS = 10;
     const MAP_ROWS = 15;
 
     const mapData = [
-        [2,2,2,2,2,2,2,2,2,2],
-        [2,2,2,2,2,2,2,2,2,2],
-        [2,2,2,2,2,2,2,2,2,2],
-        [2,0,0,4,6,4,0,0,2,2],
-        [2,0,5,4,4,4,5,0,2,2],
-        [2,0,0,3,3,3,0,0,2,2],
-        [2,0,0,1,1,1,0,0,2,2],
-        [2,0,0,1,1,1,0,0,2,2],
-        [2,0,0,1,1,1,0,0,2,2],
-        [2,0,0,1,1,1,0,0,2,2],
-        [2,0,0,1,1,1,0,0,2,2],
-        [2,0,0,1,1,1,0,0,2,2],
-        [2,0,0,1,1,1,0,0,2,2],
-        [2,2,2,2,2,2,2,2,2,2],
-        [2,2,2,2,2,2,2,2,2,2]
+        [2,2,2,2,2,2,2,2,2,2], [2,2,2,2,2,2,2,2,2,2], [2,2,2,2,2,2,2,2,2,2],
+        [2,0,0,4,6,4,0,0,2,2], [2,0,5,4,4,4,5,0,2,2], [2,0,0,3,3,3,0,0,2,2],
+        [2,0,0,1,1,1,0,0,2,2], [2,0,0,1,1,1,0,0,2,2], [2,0,0,1,1,1,0,0,2,2],
+        [2,0,0,1,1,1,0,0,2,2], [2,0,0,1,1,1,0,0,2,2], [2,0,0,1,1,1,0,0,2,2],
+        [2,0,0,1,1,1,0,0,2,2], [2,2,2,2,2,2,2,2,2,2], [2,2,2,2,2,2,2,2,2,2]
     ];
 
     const tiles = {};
@@ -197,59 +198,23 @@
             drawFn(c.getContext('2d'));
             return c;
         };
-
-        tiles[0] = create(cx => {
-            cx.fillStyle = '#3a3a3a'; cx.fillRect(0, 0, TILE_SIZE, TILE_SIZE);
-            cx.fillStyle = '#4a4a4a'; cx.fillRect(0, 0, TILE_SIZE, 2); cx.fillRect(0, 0, 2, TILE_SIZE);
-            cx.fillStyle = '#222'; cx.fillRect(TILE_SIZE-2, 0, 2, TILE_SIZE); cx.fillRect(0, TILE_SIZE-2, TILE_SIZE, 2);
-        });
+        tiles[0] = create(cx => { cx.fillStyle = '#3a3a3a'; cx.fillRect(0, 0, TILE_SIZE, TILE_SIZE); });
         tiles[1] = create(cx => {
-            const grad = cx.createLinearGradient(0, 0, TILE_SIZE, 0);
-            grad.addColorStop(0, '#400'); grad.addColorStop(0.5, '#900'); grad.addColorStop(1, '#400');
-            cx.fillStyle = grad; cx.fillRect(0, 0, TILE_SIZE, TILE_SIZE);
+            cx.fillStyle = '#900'; cx.fillRect(0, 0, TILE_SIZE, TILE_SIZE);
             cx.fillStyle = '#b08d00'; cx.fillRect(4, 0, 4, TILE_SIZE); cx.fillRect(TILE_SIZE-8, 0, 4, TILE_SIZE);
         });
         tiles[2] = create(cx => { cx.fillStyle = '#050505'; cx.fillRect(0, 0, TILE_SIZE, TILE_SIZE); });
-        tiles[3] = create(cx => {
-            const topGrad = cx.createLinearGradient(0, 0, 0, TILE_SIZE/2);
-            topGrad.addColorStop(0, '#555'); topGrad.addColorStop(1, '#333');
-            cx.fillStyle = topGrad; cx.fillRect(0, 0, TILE_SIZE, TILE_SIZE/2);
-            const botGrad = cx.createLinearGradient(0, TILE_SIZE/2, 0, TILE_SIZE);
-            botGrad.addColorStop(0, '#666'); botGrad.addColorStop(1, '#333');
-            cx.fillStyle = botGrad; cx.fillRect(0, TILE_SIZE/2, TILE_SIZE, TILE_SIZE/2);
-        });
-        tiles[4] = create(cx => {
-            cx.fillStyle = '#555'; cx.fillRect(0, 0, TILE_SIZE, TILE_SIZE);
-            cx.fillStyle = '#666'; cx.fillRect(0, 0, TILE_SIZE, 4); cx.fillRect(0, 0, 4, TILE_SIZE);
-            cx.fillStyle = '#333'; cx.fillRect(TILE_SIZE-4, 0, 4, TILE_SIZE); cx.fillRect(0, TILE_SIZE-4, TILE_SIZE, 4);
-        });
-        tiles[5] = create(cx => {
-            const pGrad = cx.createLinearGradient(16, 0, 48, 0);
-            pGrad.addColorStop(0, '#222'); pGrad.addColorStop(0.5, '#666'); pGrad.addColorStop(1, '#111');
-            cx.fillStyle = pGrad; cx.fillRect(16, 16, 32, TILE_SIZE);
-            cx.fillStyle = '#333'; cx.fillRect(12, 10, 40, 10);
-        });
-        tiles[6] = create(cx => {
-            cx.fillStyle = '#555'; cx.fillRect(0, 0, TILE_SIZE, TILE_SIZE);
-            const rGrad = cx.createRadialGradient(32, 32, 5, 32, 32, 25);
-            rGrad.addColorStop(0, '#333'); rGrad.addColorStop(1, '#111');
-            cx.fillStyle = rGrad; cx.beginPath(); cx.arc(32, 32, 25, 0, Math.PI*2); cx.fill();
-        });
+        tiles[3] = create(cx => { cx.fillStyle = '#444'; cx.fillRect(0, 0, TILE_SIZE, TILE_SIZE); cx.fillStyle = '#222'; cx.fillRect(0, TILE_SIZE/2, TILE_SIZE, TILE_SIZE/2); });
+        tiles[4] = create(cx => { cx.fillStyle = '#555'; cx.fillRect(0, 0, TILE_SIZE, TILE_SIZE); cx.strokeStyle = '#666'; cx.strokeRect(5, 5, TILE_SIZE-10, TILE_SIZE-10); });
+        tiles[5] = create(cx => { cx.fillStyle = '#222'; cx.fillRect(16, 16, 32, TILE_SIZE); });
+        tiles[6] = create(cx => { cx.fillStyle = '#555'; cx.fillRect(0, 0, TILE_SIZE, TILE_SIZE); cx.fillStyle = '#111'; cx.beginPath(); cx.arc(32, 32, 20, 0, Math.PI*2); cx.fill(); });
     }
     createTiles();
 
-    function drawSlime(x, y, bounceOffset) {
-        const sx = x + TILE_SIZE/2;
-        const sy = y + TILE_SIZE/2 + bounceOffset;
-
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
-        ctx.beginPath(); ctx.ellipse(sx, sy + 15, 25, 10, 0, 0, Math.PI*2); ctx.fill();
-
+    function drawSlime(x, y, bounce) {
+        const sx = x + TILE_SIZE/2; const sy = y + TILE_SIZE/2 + bounce;
         const grad = ctx.createRadialGradient(sx - 10, sy - 15, 2, sx, sy, 35);
-        grad.addColorStop(0, '#aaccff'); 
-        grad.addColorStop(0.4, '#0055dd');
-        grad.addColorStop(1, '#001155'); 
-        
+        grad.addColorStop(0, '#aaccff'); grad.addColorStop(0.4, '#0055dd'); grad.addColorStop(1, '#001155');
         ctx.fillStyle = grad;
         ctx.beginPath();
         ctx.moveTo(sx, sy - 30);
@@ -257,127 +222,80 @@
         ctx.quadraticCurveTo(sx, sy + 25, sx - 25, sy + 15);
         ctx.quadraticCurveTo(sx - 35, sy - 15, sx, sy - 30);
         ctx.fill();
-
-        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
-        ctx.beginPath(); ctx.ellipse(sx - 8, sy - 12, 10, 5, Math.PI / -6, 0, Math.PI*2); ctx.fill();
-
         ctx.fillStyle = '#000';
-        ctx.beginPath(); ctx.arc(sx - 10, sy + 5, 4.5, 0, Math.PI*2); ctx.fill();
-        ctx.beginPath(); ctx.arc(sx + 10, sy + 5, 4.5, 0, Math.PI*2); ctx.fill();
-        ctx.fillStyle = '#fff';
-        ctx.beginPath(); ctx.arc(sx - 11, sy + 3, 1.5, 0, Math.PI*2); ctx.fill();
-        ctx.beginPath(); ctx.arc(sx + 9, sy + 3, 1.5, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.arc(sx-10, sy+5, 4.5, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.arc(sx+10, sy+5, 4.5, 0, Math.PI*2); ctx.fill();
     }
 
-    let player = {
-        worldX: 4 * TILE_SIZE + TILE_SIZE/2, 
-        worldY: 12 * TILE_SIZE,
-        isMoving: false
-    };
-
-    let camera = { y: 0 };
+    let player = { worldY: 12 * TILE_SIZE, isMoving: false };
     let frameCount = 0;
-    const TARGET_Y = 4 * TILE_SIZE; 
 
-    function update() {
+    function gameLoop() {
         frameCount++;
-
         if (player.isMoving) {
             player.worldY -= 1.5;
-            if (player.worldY <= TARGET_Y) {
-                player.worldY = TARGET_Y;
+            if (player.worldY <= 4 * TILE_SIZE) {
+                player.worldY = 4 * TILE_SIZE;
                 player.isMoving = false;
                 setTimeout(startMonologue, 1000);
             }
         }
-
-        camera.y = player.worldY - (480 / 2) + (TILE_SIZE / 2);
-        camera.y = Math.max(0, Math.min(camera.y, MAP_ROWS * TILE_SIZE - 480));
-    }
-
-    function draw() {
+        
+        // カメラ位置を少し下にずらすことで、スライムを画面の上の方に配置しウィンドウ被りを回避（+45の部分）
+        const targetCamY = player.worldY - (480 / 2) + (TILE_SIZE / 2) + 45;
+        const camY = Math.max(0, Math.min(targetCamY, MAP_ROWS * TILE_SIZE - 480));
+        
         ctx.clearRect(0, 0, 640, 480);
-        const startRow = Math.floor(camera.y / TILE_SIZE);
-        const endRow = Math.min(MAP_ROWS - 1, startRow + Math.ceil(480 / TILE_SIZE) + 1);
-
-        for (let r = startRow; r <= endRow; r++) {
+        for (let r = 0; r < MAP_ROWS; r++) {
             for (let c = 0; c < MAP_COLS; c++) {
-                const tileId = mapData[r][c];
-                const drawX = c * TILE_SIZE;
-                const drawY = r * TILE_SIZE - camera.y;
-                
-                ctx.drawImage(tiles[tileId], drawX, drawY);
-
-                if (tileId === 5) {
-                    const fireFrame = Math.floor(frameCount / 8) % 3;
-                    const fx = drawX + 32;
-                    const fy = drawY + 8;
-
-                    ctx.globalCompositeOperation = 'lighter';
-                    const glow = ctx.createRadialGradient(fx, fy, 0, fx, fy, 40);
-                    glow.addColorStop(0, 'rgba(255, 100, 0, 0.5)');
-                    glow.addColorStop(1, 'rgba(255, 100, 0, 0)');
-                    ctx.fillStyle = glow;
-                    ctx.beginPath(); ctx.arc(fx, fy, 40, 0, Math.PI*2); ctx.fill();
-                    ctx.globalCompositeOperation = 'source-over';
-
-                    ctx.fillStyle = ['#ff4500', '#ff8c00', '#ffd700'][fireFrame];
-                    ctx.beginPath(); ctx.arc(fx, fy + (fireFrame%2), 8, 0, Math.PI*2); ctx.fill();
+                ctx.drawImage(tiles[mapData[r][c]], c * TILE_SIZE, r * TILE_SIZE - camY);
+                if (mapData[r][c] === 5) {
+                    const fx = c * TILE_SIZE + 32; const fy = r * TILE_SIZE - camY + 8;
+                    ctx.fillStyle = `rgba(255, 100, 0, 0.3)`;
+                    ctx.beginPath(); ctx.arc(fx, fy, 30, 0, Math.PI*2); ctx.fill();
+                    ctx.fillStyle = '#ff8c00'; ctx.beginPath(); ctx.arc(fx, fy + (Math.floor(frameCount/10)%2), 8, 0, Math.PI*2); ctx.fill();
                 }
             }
         }
-
-        const drawPx = player.worldX - TILE_SIZE/2;
-        const drawPy = player.worldY - camera.y;
-        let bounce = player.isMoving ? Math.sin(frameCount * 0.25) * 5 : 0;
-        drawSlime(drawPx, drawPy, bounce);
-    }
-
-    function gameLoop() {
-        update();
-        draw();
+        drawSlime(player.worldX - TILE_SIZE/2 || 320 - 32, player.worldY - camY, player.isMoving ? Math.sin(frameCount * 0.25) * 5 : 0);
         requestAnimationFrame(gameLoop);
     }
 
-    // --- クリック待ちのロジック ---
     let waitingForInput = false;
     let inputResolve = null;
 
-    // ゲーム画面のどこかをタップ/クリックした時の処理
     gameContainer.addEventListener('click', () => {
-        if (waitingForInput && inputResolve) {
-            inputResolve(); // 待機状態を解除して次へ進む
-        }
+        if (waitingForInput && inputResolve) inputResolve();
     });
 
     const script = [
-        "なんてことだ、、、\n奴らはもうヘニョリン玉を\n手に入れてしまったのか",
-        "ここはペニョロンポッペを召喚しなければ",
-        "ポニョロンポッペー！！",
-        "終わった、、、すべて終わったんだ……"
+        "マサカキノタネ\nやつらはもうヘニョリンダマを\nてにいれていたのか！？",
+        "だとしたら\nぼくにはかちめがない！\nもうおわりだモロ！",
+        "いや、まだピロロントッペが\nのこっているはずだ",
+        "ペロロントッペ〜！！",
+        "explosion_trigger",
+        "おわった･･･\nすべておわったんだ･･･\n\nなにもかも"
     ];
 
     async function typeWriter(text) {
-        msgText.innerHTML = "";
-        
-        // 1文字ずつ表示
-        for (let char of text) {
-            if (char === '\n') {
-                msgText.innerHTML += '<br>';
-            } else {
-                msgText.innerHTML += char;
-            }
-            await new Promise(r => setTimeout(r, 60));
+        if (text === "explosion_trigger") {
+            gameContainer.classList.add('shake');
+            flash.style.opacity = 1;
+            await new Promise(r => setTimeout(r, 100));
+            flash.style.opacity = 0;
+            await new Promise(r => setTimeout(r, 1000));
+            gameContainer.classList.remove('shake');
+            return;
         }
 
-        // 表示完了後、▼を点滅させてクリック待機
+        msgText.innerHTML = "";
+        for (let char of text) {
+            msgText.innerHTML += char === '\n' ? '<br>' : char;
+            await new Promise(r => setTimeout(r, 60));
+        }
         msgCursor.style.display = 'block';
         waitingForInput = true;
-        
-        // ユーザーがクリックするまでここで処理を一時停止する
         await new Promise(resolve => { inputResolve = resolve; });
-        
-        // クリックされたら次へ
         waitingForInput = false;
         inputResolve = null;
         msgCursor.style.display = 'none';
@@ -389,10 +307,6 @@
             await typeWriter(line);
         }
         msgWindow.style.display = 'none';
-
-        canvas.classList.add('sepia-mode');
-        await new Promise(r => setTimeout(r, 2000));
-
         staffRoll.style.display = 'block';
         rollContent.classList.add('animate-roll');
     }
@@ -403,8 +317,6 @@
     });
 
     gameLoop();
-
 </script>
-
 </body>
 </html>
