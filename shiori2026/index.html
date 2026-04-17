@@ -170,13 +170,14 @@
             font-weight: bold;
             margin-bottom: 10px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-size: 0.9rem;
         }
 
         .map-btn-route { background-color: #4CAF50; color: white; }
         .map-btn-onsen { background-color: #64b5f6; color: white; }
         .map-btn-sweets { background-color: #ffb74d; color: white; }
-        .map-btn-article { background-color: #ec407a; color: white; }
         .map-btn-alert { background-color: #e53935; color: white; }
+        .map-btn-dokko { background-color: #8d6e63; color: white; }
 
         .mini-map-btn {
             display: inline-block;
@@ -191,7 +192,6 @@
             font-weight: bold;
         }
 
-        /* 温泉・お土産用のボックスデザイン */
         .info-box {
             background: white;
             border: 1px solid #ddd;
@@ -246,13 +246,16 @@
                     📍 全体ドライブルートを開く
                 </a>
                 <a href="https://kinosaki-spa.gr.jp/congestion/" target="_blank" class="map-btn map-btn-alert">
-                    ⚠️ 【最新】外湯の営業・混雑状況（公式）
+                    ⚠️ 【混雑・工事】外湯の最新営業状況（公式）
                 </a>
                 <a href="https://note.com/kiriko76/n/n2830996dadea" target="_blank" class="map-btn map-btn-onsen">
-                    ♨️ 【予習】リアルな旅行記：外湯めぐりの生の声（note）
+                    ♨️ 【予習】外湯めぐり体験記（note）
                 </a>
-                <a href="https://tsunagutabi.com/domestic-travel-kinosaki-gourmet/" target="_blank" class="map-btn map-btn-sweets">
-                    🍡 【予習】体験ブログ：城崎温泉の食べ歩き＆お土産
+                <a href="https://onsen.community2.fmworld.net/articles/10632/" target="_blank" class="map-btn map-btn-sweets">
+                    🛍️ 城崎温泉で買いたいお土産16選！人気のスイーツから定番の海鮮まで紹介
+                </a>
+                <a href="https://tabiiro.jp/otoriyose/ranking/japanese_confectionery/yokan/" target="_blank" class="map-btn map-btn-dokko">
+                    🍡 手土産に喜ばれる【羊羹・餡】ランキング（独鈷水ランクイン！）
                 </a>
             </div>
         </div>
@@ -326,22 +329,22 @@
                     <span class="event">♨️🍻無限ループ <span class="badge badge-onsen">Onsen</span></span>
                     <div class="memo" style="border-left-color: #64b5f6; background-color: #e3f2fd;">
                         <span style="font-weight:bold; color:#1976d2;">♨️ 外湯めぐりマスターガイド</span><br>
-                        7つの外湯のうち、絶対に攻めたいおすすめ3湯！
+                        絶対におさえておきたい「厳選3湯」！
                         <div class="info-box" style="border-color: #bbdefb;">
                             <div class="info-item">
-                                <span class="info-name info-name-onsen">① 御所の湯（ごしょのゆ）</span>
-                                <span class="info-desc">美人の湯。ダイナミックな滝の露天風呂が圧巻！ダントツ人気No.1なので夕食前後のピークを少し外すのが吉。</span>
+                                <span class="info-name info-name-onsen">① 御所の湯</span>
+                                <span class="info-desc">天空露天が圧巻。人気No.1なので外せません。</span>
                             </div>
                             <div class="info-item">
-                                <span class="info-name info-name-onsen">② 一の湯（いちのゆ）</span>
-                                <span class="info-desc">温泉街の中心にあるシンボル。山肌を削って作られた名物「洞窟風呂」はテンションが上がります。</span>
+                                <span class="info-name info-name-onsen">② 一の湯</span>
+                                <span class="info-desc">名物「洞窟風呂」がある温泉街のシンボル。</span>
                             </div>
                             <div class="info-item">
-                                <span class="info-name info-name-onsen">③ 鴻の湯（こうのゆ）</span>
-                                <span class="info-desc">夫婦円満・不老長寿の湯。街の奥まった場所にあり、静かな庭園露天風呂でしっぽり長湯できます。</span>
+                                <span class="info-name info-name-onsen">③ 鴻の湯</span>
+                                <span class="info-desc">街の奥にあり、落ち着いた庭園露天風呂が魅力。</span>
                             </div>
                         </div>
-                        <span style="color:#d32f2f; font-weight:bold; font-size:0.8rem; display:block; margin-top:8px;">⚠️注意：駅前の「さとの湯」は建て替えのため長期休業中です（足湯も利用不可）。お出かけ前に必ず公式ページで本日の営業状況をチェック！</span>
+                        <span style="color:#d32f2f; font-weight:bold; font-size:0.8rem; display:block; margin-top:8px;">⚠️駅前の「さとの湯」は建て替えのため長期休業中です。</span>
                         <a href="https://kinosaki-spa.gr.jp/congestion/" target="_blank" class="mini-map-btn" style="color:#c62828; border-color:#ef9a9a; background-color:#ffebee;">📲 今開いてる外湯をチェック！</a>
                     </div>
                 </li>
@@ -366,22 +369,24 @@
                         <div class="info-box" style="border-color: #ffe0d5;">
                             <div class="info-item">
                                 <span class="info-name info-name-sweets">① 独鈷水（どっこすい）</span>
-                                <span class="info-desc">みなとや製。薄皮に粒あん。奥様のお茶請けに最高。</span>
+                                <span class="info-desc">みなとや製。薄皮に粒あん。奥様へのお土産筆頭。ランキングでもお墨付き！</span>
                             </div>
                             <div class="info-item">
                                 <span class="info-name info-name-sweets">② かに最中</span>
-                                <span class="info-desc">見た目が超カニ！娘さんが喜ぶこと間違いなし。</span>
+                                <span class="info-desc">見た目が超カニ！娘さんへのお土産に最適。</span>
                             </div>
                             <div class="info-item">
                                 <span class="info-name info-name-sweets">③ だんじり太鼓</span>
                                 <span class="info-desc">城崎祭りの太鼓を模した饅頭。職場配りにも適。</span>
                             </div>
                             <div class="info-item">
-                                <span class="info-name info-name-sweets">④ 湯あがりぷりん・チーズタルト</span>
-                                <span class="info-desc">円山菓寮製。その場で食べる用＆甘党へのお土産に。</span>
+                                <span class="info-name info-name-sweets">④ たじまびじん</span>
+                                <span class="info-desc">ミルク餡を求肥で包んだ上品な味。女性人気絶大。</span>
                             </div>
                         </div>
                         <a href="https://www.google.com/maps/search/城崎温泉+和菓子屋" target="_blank" class="mini-map-btn">🍡 和菓子屋 マップ</a>
+                        <a href="https://onsen.community2.fmworld.net/articles/10632/" target="_blank" class="mini-map-btn" style="background-color: #fff3e0; border-color: #ffcc80; color: #e65100;">🛍️ 城崎温泉で買いたいお土産16選</a>
+                        <a href="https://tabiiro.jp/otoriyose/ranking/japanese_confectionery/yokan/" target="_blank" class="mini-map-btn" style="background-color: #efebe9; border-color: #bcaaa4; color: #5d4037;">🍡 独鈷水が載ってるランキング</a>
                     </div>
                 </li>
                 <li class="timeline-item">
