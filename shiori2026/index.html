@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>春の日本海・城崎温泉 湯めぐりツアー</title>
+    <style>
+        :root {
+            --primary-color: #ff7e5f;
+            --secondary-color: #feb47b;
+            --bg-color: #fff9f5;
+            --text-color: #4a4a4a;
+            --accent-color: #64b5f6;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            margin: 10px 0 0;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: -20px auto 40px;
+            padding: 0 15px;
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .day-header {
+            background-color: #f8f8f8;
+            padding: 15px 20px;
+            border-bottom: 2px solid #eee;
+            display: flex;
+            align-items: baseline;
+        }
+
+        .day-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-right: 10px;
+        }
+
+        .day-date {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .timeline {
+            padding: 20px;
+            list-style: none;
+            margin: 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 15px;
+            width: 2px;
+            height: calc(100% + 10px);
+            background-color: #ffe0d5;
+        }
+
+        .time {
+            font-weight: bold;
+            color: var(--primary-color);
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .event {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: 2px;
+            display: block;
+        }
+
+        .memo {
+            font-size: 0.85rem;
+            color: #777;
+            margin-top: 5px;
+            background: #fffef0;
+            padding: 12px;
+            border-radius: 5px;
+            border-left: 3px solid #ffeb3b;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            color: white;
+            margin-left: 5px;
+            vertical-align: middle;
+            font-weight: normal;
+        }
+
+        .badge-food { background-color: #ffab91; }
+        .badge-view { background-color: #81c784; }
+        .badge-onsen { background-color: #64b5f6; }
+        .badge-hotel { background-color: #ba68c8; }
+        .badge-train { background-color: #90a4ae; }
+        .badge-mission { background-color: #f44336; font-weight: bold; color: white;}
+
+        .map-section {
+            padding: 10px 20px 20px;
+        }
+
+        .map-btn {
+            display: block;
+            text-align: center;
+            padding: 12px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .map-btn-route { background-color: #4CAF50; color: white; }
+        .map-btn-onsen { background-color: #64b5f6; color: white; }
+        .map-btn-sweets { background-color: #ffb74d; color: white; }
+        .map-btn-article { background-color: #ec407a; color: white; }
+        .map-btn-alert { background-color: #e53935; color: white; }
+
+        .mini-map-btn {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 5px 12px;
+            background-color: #f1f8e9;
+            color: #2e7d32;
+            border: 1px solid #c5e1a5;
+            border-radius: 15px;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* 温泉・お土産用のボックスデザイン */
+        .info-box {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        .info-item {
+            margin-bottom: 10px;
+            border-bottom: 1px dotted #eee;
+            padding-bottom: 8px;
+        }
+        .info-item:last-child { 
+            border: none; 
+            padding-bottom: 0; 
+            margin-bottom: 0; 
+        }
+        .info-name { font-weight: bold; font-size: 0.9rem; }
+        .info-name-onsen { color: #1976d2; }
+        .info-name-sweets { color: #e65100; }
+        .info-desc { font-size: 0.8rem; color: #666; display: block; margin-top: 3px; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #aaa;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>🚗 SHIORI 2026</h1>
+        <p>日本海縦断・城崎温泉 湯めぐりツアー</p>
+    </div>
+
+    <div class="container">
+        
+        <div class="day-card" style="margin-top: 20px;">
+            <div class="day-header">
+                <span class="day-number">🗺</span>
+                <span class="day-date">便利リンク集</span>
+            </div>
+            <div class="map-section">
+                <a href="https://www.google.com/maps/dir/直江津駅/敦賀駅/三方五湖/天橋立/城崎温泉やなぎ荘" target="_blank" class="map-btn map-btn-route">
+                    📍 全体ドライブルートを開く
+                </a>
+                <a href="https://kinosaki-spa.gr.jp/congestion/" target="_blank" class="map-btn map-btn-alert">
+                    ⚠️ 【最新】外湯の営業・混雑状況（公式）
+                </a>
+                <a href="https://note.com/kiriko76/n/n2830996dadea" target="_blank" class="map-btn map-btn-onsen">
+                    ♨️ 【予習】リアルな旅行記：外湯めぐりの生の声（note）
+                </a>
+                <a href="https://tsunagutabi.com/domestic-travel-kinosaki-gourmet/" target="_blank" class="map-btn map-btn-sweets">
+                    🍡 【予習】体験ブログ：城崎温泉の食べ歩き＆お土産
+                </a>
+            </div>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-number">Day 1</span>
+                <span class="day-date">4/17 (金) 直江津へ</span>
+            </div>
+            <ul class="timeline">
+                <li class="timeline-item">
+                    <span class="time">Evening</span>
+                    <span class="event">直江津へ出発 🚆🚙</span>
+                    <div class="memo"><b>やわT・タフT：</b>電車で直江津入り、先に宿へチェックイン！<br><b>前ちょ：</b>仕事の飲み会後、自走で直江津を目指す。</div>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">Night</span>
+                    <span class="event">前ちょ 合流 🏨</span>
+                    <div class="memo">深夜になると思うが宿に滑り込み合流！おやすみなさい…💤</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-number">Day 2</span>
+                <span class="day-date">4/18 (土) 絶景と♨️🍻ループ</span>
+            </div>
+            <ul class="timeline">
+                <li class="timeline-item">
+                    <span class="time">07:30</span>
+                    <span class="event">直江津 出発！ 🚙</span>
+                    <div class="memo">ここから<b>前ちょ・やわT・タフT</b>は車で一路西へ！</div>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">07:32</span>
+                    <span class="event">トトローズ 出発 🚆 <span class="badge badge-train">Train</span></span>
+                    <div class="memo">志賀本通 発（金山・米原経由）</div>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">10:17</span>
+                    <span class="event">トトローズ 敦賀 到着 🏁</span>
+                    <div class="memo"><a href="https://maps.google.com/?cid=16125398627099677086&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="mini-map-btn">📍 敦賀駅 マップ</a></div>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">11:30頃</span>
+                    <span class="event">敦賀で全員合流 🤝</span>
+                    <div class="memo">前ちょ号にトトローズが乗車し、ここから4名1台の旅！</div>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">12:00</span>
+                    <span class="event">ソースカツ丼ランチ <span class="badge badge-food">Lunch</span></span>
+                    <div class="memo"><a href="https://maps.google.com/?cid=735425230624248954&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="mini-map-btn">📍 ヨーロッパ軒 マップ</a></div>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">13:40</span>
+                    <span class="event">三方五湖 観光 <span class="badge badge-view">Spot</span></span>
+                    <div class="memo"><a href="https://maps.google.com/?cid=8218459788809428231&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="mini-map-btn">📍 三方五湖山頂公園 マップ</a></div>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">16:10</span>
+                    <span class="event">天橋立 観光 <span class="badge badge-view">Spot</span></span>
+                    <div class="memo"><a href="https://maps.google.com/?cid=3145056126996580709&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="mini-map-btn">📍 天橋立飛龍観 マップ</a></div>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">18:00</span>
+                    <span class="event">やなぎ荘 到着 <span class="badge badge-hotel">Stay</span></span>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">Night</span>
+                    <span class="event">♨️🍻無限ループ <span class="badge badge-onsen">Onsen</span></span>
+                    <div class="memo" style="border-left-color: #64b5f6; background-color: #e3f2fd;">
+                        <span style="font-weight:bold; color:#1976d2;">♨️ 外湯めぐりマスターガイド</span><br>
+                        7つの外湯のうち、絶対に攻めたいおすすめ3湯！
+                        <div class="info-box" style="border-color: #bbdefb;">
+                            <div class="info-item">
+                                <span class="info-name info-name-onsen">① 御所の湯（ごしょのゆ）</span>
+                                <span class="info-desc">美人の湯。ダイナミックな滝の露天風呂が圧巻！ダントツ人気No.1なので夕食前後のピークを少し外すのが吉。</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-name info-name-onsen">② 一の湯（いちのゆ）</span>
+                                <span class="info-desc">温泉街の中心にあるシンボル。山肌を削って作られた名物「洞窟風呂」はテンションが上がります。</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-name info-name-onsen">③ 鴻の湯（こうのゆ）</span>
+                                <span class="info-desc">夫婦円満・不老長寿の湯。街の奥まった場所にあり、静かな庭園露天風呂でしっぽり長湯できます。</span>
+                            </div>
+                        </div>
+                        <span style="color:#d32f2f; font-weight:bold; font-size:0.8rem; display:block; margin-top:8px;">⚠️注意：駅前の「さとの湯」は建て替えのため長期休業中です（足湯も利用不可）。お出かけ前に必ず公式ページで本日の営業状況をチェック！</span>
+                        <a href="https://kinosaki-spa.gr.jp/congestion/" target="_blank" class="mini-map-btn" style="color:#c62828; border-color:#ef9a9a; background-color:#ffebee;">📲 今開いてる外湯をチェック！</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="day-card">
+            <div class="day-header">
+                <span class="day-number">Day 3</span>
+                <span class="day-date">4/19 (日) 和菓子ハント</span>
+            </div>
+            <ul class="timeline">
+                <li class="timeline-item">
+                    <span class="time">Morning</span>
+                    <span class="event">絶品カニ茶漬け朝食 🦀</span>
+                </li>
+                <li class="timeline-item" style="padding-bottom: 5px;">
+                    <span class="time">09:00</span>
+                    <span class="event">究極のお土産ハント 🍡 <span class="badge badge-mission">Must Buy</span></span>
+                    <div class="memo" style="border-left-color: #ff9800; background-color: #fff3e0;">
+                        <b>城崎温泉で買うべき「鉄板」和菓子リスト：</b>
+                        <div class="info-box" style="border-color: #ffe0d5;">
+                            <div class="info-item">
+                                <span class="info-name info-name-sweets">① 独鈷水（どっこすい）</span>
+                                <span class="info-desc">みなとや製。薄皮に粒あん。奥様のお茶請けに最高。</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-name info-name-sweets">② かに最中</span>
+                                <span class="info-desc">見た目が超カニ！娘さんが喜ぶこと間違いなし。</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-name info-name-sweets">③ だんじり太鼓</span>
+                                <span class="info-desc">城崎祭りの太鼓を模した饅頭。職場配りにも適。</span>
+                            </div>
+                            <div class="info-item">
+                                <span class="info-name info-name-sweets">④ 湯あがりぷりん・チーズタルト</span>
+                                <span class="info-desc">円山菓寮製。その場で食べる用＆甘党へのお土産に。</span>
+                            </div>
+                        </div>
+                        <a href="https://www.google.com/maps/search/城崎温泉+和菓子屋" target="_blank" class="mini-map-btn">🍡 和菓子屋 マップ</a>
+                    </div>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">10:00</span>
+                    <span class="event">チェックアウト</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">13:00</span>
+                    <span class="event">敦賀でトトローズ 解散 👋</span>
+                </li>
+                <li class="timeline-item">
+                    <span class="time">17:30</span>
+                    <span class="event">長岡 到着・最終解散 🏁</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            Produced by Gemini | 最高の温泉ツアーを！
+        </div>
+    </div>
+
+</body>
+</html>
