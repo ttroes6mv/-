@@ -7,7 +7,7 @@
 <style>
     body {
         font-family: 'Hiragino Maru Gothic ProN', 'Rounded M+ 1c', sans-serif;
-        background-color: #f3e5f5; /* 紫組カラーの背景 */
+        background-color: #f3e5f5;
         color: #333;
         margin: 0;
         padding: 20px;
@@ -21,7 +21,7 @@
         overflow: hidden;
     }
     .header {
-        background-color: #8e24aa; /* 紫組カラーのヘッダー */
+        background-color: #8e24aa;
         color: white;
         text-align: center;
         padding: 20px;
@@ -33,6 +33,45 @@
     .content {
         padding: 20px;
     }
+    .section-title {
+        color: #6a1b9a;
+        border-bottom: 2px solid #ce93d8;
+        padding-bottom: 5px;
+        margin-top: 30px;
+    }
+    
+    /* マップのスタイル */
+    .map-container {
+        background-color: #e1bee7;
+        padding: 15px;
+        border-radius: 10px;
+        margin: 20px 0;
+        text-align: center;
+        font-size: 0.9em;
+        font-weight: bold;
+    }
+    .map-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .map-area {
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        border: 2px solid #ba68c8;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .map-center {
+        background-color: #ffe082;
+        border-color: #ffb300;
+    }
+
+    /* タイムラインのスタイル */
     .timeline {
         position: relative;
         margin: 20px 0;
@@ -69,22 +108,30 @@
         color: #555;
         line-height: 1.5;
     }
-    .link-section {
-        background-color: #f8bbd0;
+    
+    /* お土産・リンクのスタイル */
+    .souvenir-box, .link-section {
+        background-color: #fff3e0;
         padding: 20px;
         border-radius: 10px;
-        margin-top: 30px;
+        margin-top: 20px;
     }
-    .link-section h3 {
-        color: #c2185b;
+    .souvenir-box h3, .link-section h3 {
+        color: #e65100;
         margin-top: 0;
         text-align: center;
+    }
+    .souvenir-item {
+        margin-bottom: 15px;
+    }
+    .souvenir-item strong {
+        color: #d84315;
     }
     .link-btn {
         display: block;
         background-color: #fff;
-        border: 2px solid #c2185b;
-        color: #c2185b;
+        border: 2px solid #8e24aa;
+        color: #8e24aa;
         text-decoration: none;
         padding: 12px;
         margin-bottom: 12px;
@@ -95,15 +142,8 @@
         font-size: 0.95em;
     }
     .link-btn:hover {
-        background-color: #c2185b;
+        background-color: #8e24aa;
         color: #fff;
-    }
-    .link-desc {
-        font-size: 0.8em;
-        color: #666;
-        text-align: center;
-        margin-top: -8px;
-        margin-bottom: 15px;
     }
 </style>
 </head>
@@ -115,73 +155,114 @@
     </div>
     
     <div class="content">
-        <p style="text-align: center; font-weight: bold;">4月22日（水）スケジュール</p>
+        <h2 class="section-title">🗺️ ざっくり園内マップ</h2>
+        <div class="map-container">
+            パークは中央の「ミニランド」を囲むように作られています。<br>右回りに進むとスムーズです！
+            <div class="map-grid">
+                <div class="map-area">🏴‍☠️ パイレーツ<br>ショア</div>
+                <div class="map-area">🏰 ナイト・<br>キングダム</div>
+                <div class="map-area">🥷 レゴ・<br>ニンジャゴー</div>
+                
+                <div class="map-area">⚓ アドベンチャー</div>
+                <div class="map-area map-center">🗼 ミニランド<br><span style="font-size: 0.7em; font-weight:normal;">(パークの中心)</span></div>
+                <div class="map-area">🚒 レゴ・シティ<br><span style="font-size: 0.7em; font-weight:normal;">(ハンバーガーココ！)</span></div>
+                
+                <div class="map-area" style="visibility: hidden;"></div>
+                <div class="map-area">🎠 ブリックトピア<br><span style="font-size: 0.7em; font-weight:normal;">(メリーゴーランド)</span></div>
+                <div class="map-area">🏭 ファクトリー<br><span style="font-size: 0.7em; font-weight:normal;">(入口・お土産)</span></div>
+            </div>
+        </div>
 
+        <h2 class="section-title">⏰ 当日のスケジュール</h2>
         <div class="timeline">
             <div class="event">
                 <div class="time">10:05</div>
                 <div class="title">📍 集合（Lives NAGOYA）</div>
-                <div class="desc">紫組の集合時間です。遅れないように向かいましょう！</div>
+                <div class="desc">紫組の集合時間です。遅れないように向かいましょう。</div>
             </div>
 
             <div class="event">
                 <div class="time">10:20頃</div>
                 <div class="title">📸 クラス写真撮影</div>
-                <div class="desc">赤・白組の次に撮影します。保護者は1名のみ参加なので事前にどちらが入るか決めておくとスムーズです。</div>
+                <div class="desc">保護者は1名のみ参加可能です。</div>
             </div>
 
             <div class="event">
                 <div class="time">10:45</div>
-                <div class="title">🏃‍♂️ 入場＆すぐ自由行動スタート！</div>
-                <div class="desc">シールラリーには参加せず、そのままパーク内へ。一足先にアトラクションやレストランエリアへ向かいます。</div>
+                <div class="title">🏃‍♂️ 自由行動スタート！真っ先にお店へ</div>
+                <div class="desc">レゴ・シティエリアへ直行します。</div>
             </div>
 
             <div class="event">
                 <div class="time">11:00</div>
-                <div class="title">🍔 混む前に！早めのランチタイム</div>
-                <div class="desc">レゴ・シティエリアにある「ブリック・ハウス・バーガー」へ。ビーフ100%の本格バーガーと、名物の「レゴポテト」でお腹を満たしましょう。12時を過ぎると一気に混み合うので大正解のタイミングです。</div>
+                <div class="title">🍔 オープンと同時にランチ！</div>
+                <div class="desc">「ブリック・ハウス・バーガー」は平日11時オープン。一番乗りで席を確保し、名物レゴポテトと100%ビーフバーガーを堪能します。</div>
             </div>
 
             <div class="event">
-                <div class="time">12:00〜15:00</div>
-                <div class="title">🎢 アトラクション＆イラスト取材満喫</div>
-                <div class="desc">
-                    ・<b>サブマリン・アドベンチャー：</b>本物の魚とレゴの遺跡！5歳でも怖がらず楽しめます。<br>
-                    ・<b>ミニランド：</b>日本中の名所がレゴに。デフォルメされた建物や人は、クリスタで絵を描く時の素晴らしい資料になります！<br>
-                    ・<b>レスキュー・アカデミー：</b>パパの腕の見せ所。3人で消防車を動かして火消し体験！
-                </div>
+                <div class="time">11:50</div>
+                <div class="title">🎠 ブリック・パーティ（ブリックトピア）</div>
+                <div class="desc">レゴブロックでできたポップで色鮮やかなメリーゴーランド。写真映え抜群で、女の子がとても喜ぶアトラクションです。</div>
             </div>
 
             <div class="event">
-                <div class="time">15:00</div>
+                <div class="time">12:30</div>
+                <div class="title">⚓ サブマリン・アドベンチャー（アドベンチャー）</div>
+                <div class="desc">本物の魚が泳ぐ水槽の中を潜水艦で進みます。身長110cmなら全く問題なし。窓から見えるレゴの古代遺跡とお魚のコラボは必見です。</div>
+            </div>
+
+            <div class="event">
+                <div class="time">13:10</div>
+                <div class="title">🗼 ミニランドでイラスト資料集め</div>
+                <div class="desc">パーク中央へ。日本中の名所がレゴで精巧に、かつ可愛らしくデフォルメされています。クリスタでイラストを描く際の素晴らしいインスピレーション源になります。</div>
+            </div>
+
+            <div class="event">
+                <div class="time">14:00</div>
+                <div class="title">🏰 ドラゴン・アプレンティス（ナイト・キングダム）</div>
+                <div class="desc">105cmから乗れる小型ジェットコースター！コースターデビューにぴったりな適度なスピードです。パパママと一緒に乗って騎士見習いに。</div>
+            </div>
+
+            <div class="event">
+                <div class="time">14:40</div>
+                <div class="title">🚒 レスキュー・アカデミー（レゴ・シティ）</div>
+                <div class="desc">家族3人でポンプを漕いで消防車を動かし、火消しをする参加型アトラクション。パパの体力が試されます！</div>
+            </div>
+
+            <div class="event">
+                <div class="time">15:10</div>
                 <div class="title">🎁 ビッグ・ショップでお土産探し</div>
-                <div class="desc">出口付近のアジア最大級のショップ。夕方はレジが混みやすいので、少し早めにお土産をチェック。</div>
+                <div class="desc">エントランス付近のアジア最大級のショップへ。</div>
             </div>
 
             <div class="event">
                 <div class="time">15:40〜16:00</div>
                 <div class="title">👋 退園・帰路へ</div>
-                <div class="desc">予定通り16時前にはパークを出発。楽しかった思い出を話しながら気を付けて帰りましょう。</div>
+                <div class="desc">予定通り16時前にはパークを出発します。</div>
             </div>
         </div>
 
+        <h2 class="section-title">🎀 女の子が喜ぶ！かわいいお土産</h2>
+        <div class="souvenir-box">
+            <div class="souvenir-item">
+                <strong>① ビルド・ア・ミニフィギュア</strong><br>
+                「かお」「からだ」「あし」「ヘア」「小物」のパーツを自分で選んで、オリジナルのレゴフィギュアを3体作れるコーナー。自分そっくりにしたり、かわいい服を選んだり、女の子が絶対に夢中になる体験型のお土産です。
+            </div>
+            <div class="souvenir-item">
+                <strong>② レゴランド限定 カラフルアニマルぬいぐるみ</strong><br>
+                レゴブロックのようなカラフルな柄のゾウやパンダのぬいぐるみ（約2,000円〜）。レゴランドでしか買えない限定品で、キーチェーンサイズもあります。
+            </div>
+            <div class="souvenir-item">
+                <strong>③ 女の子ミニフィグのマグネット</strong><br>
+                「I ♡ LEGOLAND」の服を着たかわいい女の子のマグネット。冷蔵庫やホワイトボードに貼れて実用的です。
+            </div>
+        </div>
+
+        <h2 class="section-title">🔗 お役立ちリンク集</h2>
         <div class="link-section">
-            <h3>🔗 お役立ちリンク集</h3>
-            
-            <a href="https://www.legoland.jp/resort-guide/service/mobile-app/" target="_blank" class="link-btn">📱 公式アプリ（待ち時間・マップ確認）</a>
-            <div class="link-desc">※リアルタイムの待ち時間を見るにはアプリが必須＆一番便利です！</div>
-
+            <a href="https://www.legoland.jp/resort-guide/service/mobile-app/" target="_blank" class="link-btn">📱 公式アプリ（待ち時間・詳細マップ）</a>
             <a href="https://www.legoland.jp/resort-guide/legoland/food/brick-house-burgers/" target="_blank" class="link-btn">🍔 ブリック・ハウス・バーガー メニュー</a>
-            <div class="link-desc">キッズセット（パンケーキ＆ワッフル）もあります。</div>
-
-            <a href="https://www.legoland.jp/operation/info/opening-hours/operation-hours-legoland-japan/" target="_blank" class="link-btn">🕒 今月の営業時間カレンダー</a>
-            <div class="link-desc">当日の開園・閉園時間やショースケジュールを確認できます。</div>
-
-            <a href="https://life-designs.jp/webmagazine/legoland-omiyage/" target="_blank" class="link-btn">🛍️ レゴランドおすすめお土産一覧</a>
-            <div class="link-desc">事前にどんなお土産があるか予習しておくのにおすすめです。</div>
-
-            <a href="https://otonamuse.jp/travel/194518/" target="_blank" class="link-btn">📖 【体験記】5歳児と行くレゴランド</a>
-            <div class="link-desc">「退屈な時間ゼロ！」同年代のお子様と回った方のリアルなブログ記事です。</div>
+            <a href="https://www.legoland.jp/operation/info/opening-hours/operation-hours-legoland-japan/" target="_blank" class="link-btn">🕒 営業時間カレンダー</a>
         </div>
     </div>
 </div>
