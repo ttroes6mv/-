@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🌸 春の親子遠足 in レゴランド・ジャパン 🌸</title>
+<title>🌸 春の親子遠足 爆走＆攻略満喫プラン 🌸</title>
 <style>
     body {
         font-family: 'Hiragino Maru Gothic ProN', 'Rounded M+ 1c', sans-serif;
@@ -28,7 +28,7 @@
     }
     .header h1 {
         margin: 0;
-        font-size: 24px;
+        font-size: 22px;
     }
     .content {
         padding: 20px;
@@ -37,41 +37,37 @@
         color: #6a1b9a;
         border-bottom: 2px solid #ce93d8;
         padding-bottom: 5px;
-        margin-top: 30px;
+        margin-top: 25px;
     }
     
-    /* マップのスタイル */
-    .map-container {
-        background-color: #e1bee7;
-        padding: 15px;
-        border-radius: 10px;
-        margin: 20px 0;
-        text-align: center;
+    .map-link {
+        display: inline-block;
+        margin-left: 5px;
+        color: #1a73e8;
+        text-decoration: none;
         font-size: 0.9em;
-        font-weight: bold;
-    }
-    .map-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 10px;
-        margin-top: 10px;
-    }
-    .map-area {
-        background-color: #fff;
-        padding: 10px;
-        border-radius: 8px;
-        border: 2px solid #ba68c8;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .map-center {
-        background-color: #ffe082;
-        border-color: #ffb300;
+        vertical-align: middle;
     }
 
-    /* タイムラインのスタイル */
+    .train-info {
+        background-color: #e8eaf6;
+        padding: 12px;
+        border-radius: 10px;
+        margin: 10px 0;
+        font-size: 0.9em;
+    }
+    .route-btn {
+        display: block;
+        background-color: #00838f;
+        color: #fff;
+        text-decoration: none;
+        padding: 12px;
+        margin: 15px 0;
+        border-radius: 8px;
+        font-weight: bold;
+        text-align: center;
+    }
+
     .timeline {
         position: relative;
         margin: 20px 0;
@@ -79,7 +75,7 @@
         border-left: 3px solid #ba68c8;
     }
     .event {
-        margin-bottom: 25px;
+        margin-bottom: 20px;
         position: relative;
     }
     .event::before {
@@ -96,36 +92,42 @@
         font-weight: bold;
         color: #6a1b9a;
         font-size: 1.1em;
-        margin-bottom: 5px;
     }
     .title {
         font-weight: bold;
-        font-size: 1.1em;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
     }
     .desc {
-        font-size: 0.95em;
-        color: #555;
-        line-height: 1.5;
+        font-size: 0.9em;
+        color: #444;
+        line-height: 1.4;
     }
-    
-    /* お土産・リンクのスタイル */
-    .souvenir-box, .link-section {
-        background-color: #fff3e0;
-        padding: 20px;
+    .warning {
+        color: #d32f2f;
+        font-weight: bold;
+        background-color: #ffebee;
+        padding: 2px 5px;
+        border-radius: 4px;
+    }
+    .highlight-box {
+        background-color: #e8f5e9;
+        padding: 15px;
         border-radius: 10px;
-        margin-top: 20px;
+        margin: 15px 0;
+        border: 2px solid #a5d6a7;
     }
-    .souvenir-box h3, .link-section h3 {
-        color: #e65100;
+    .highlight-box h3 {
+        color: #2e7d32;
         margin-top: 0;
         text-align: center;
+        font-size: 1.1em;
     }
-    .souvenir-item {
-        margin-bottom: 15px;
-    }
-    .souvenir-item strong {
-        color: #d84315;
+    
+    .link-section {
+        background-color: #fff3e0;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
     }
     .link-btn {
         display: block;
@@ -133,17 +135,16 @@
         border: 2px solid #8e24aa;
         color: #8e24aa;
         text-decoration: none;
-        padding: 12px;
-        margin-bottom: 12px;
+        padding: 10px;
+        margin-bottom: 10px;
         border-radius: 8px;
         font-weight: bold;
         text-align: center;
-        transition: 0.2s;
-        font-size: 0.95em;
+        font-size: 0.9em;
     }
-    .link-btn:hover {
-        background-color: #8e24aa;
-        color: #fff;
+    .article-link {
+        border-color: #ff9800;
+        color: #e65100;
     }
 </style>
 </head>
@@ -151,118 +152,105 @@
 
 <div class="container">
     <div class="header">
-        <h1>🌸 春の親子遠足 🌸<br>レゴランド満喫しおり（紫組ルート）</h1>
+        <h1>🌸 春の親子遠足 🌸<br>爆走シールラリー＆攻略満喫しおり</h1>
     </div>
     
     <div class="content">
-        <h2 class="section-title">🗺️ ざっくり園内マップ</h2>
-        <div class="map-container">
-            パークは中央の「ミニランド」を囲むように作られています。<br>右回りに進むとスムーズです！
-            <div class="map-grid">
-                <div class="map-area">🏴‍☠️ パイレーツ<br>ショア</div>
-                <div class="map-area">🏰 ナイト・<br>キングダム</div>
-                <div class="map-area">🥷 レゴ・<br>ニンジャゴー</div>
-                
-                <div class="map-area">⚓ アドベンチャー</div>
-                <div class="map-area map-center">🗼 ミニランド<br><span style="font-size: 0.7em; font-weight:normal;">(パークの中心)</span></div>
-                <div class="map-area">🚒 レゴ・シティ<br><span style="font-size: 0.7em; font-weight:normal;">(ハンバーガーココ！)</span></div>
-                
-                <div class="map-area" style="visibility: hidden;"></div>
-                <div class="map-area">🎠 ブリックトピア<br><span style="font-size: 0.7em; font-weight:normal;">(メリーゴーランド)</span></div>
-                <div class="map-area">🏭 ファクトリー<br><span style="font-size: 0.7em; font-weight:normal;">(入口・お土産)</span></div>
-            </div>
+        <h2 class="section-title">🚃 電車・徒歩ルート</h2>
+        <div class="train-info">
+            08:31 志賀本通 発 → 08:44 久屋大通 → 09:00 名古屋 → 09:24 金城ふ頭 着
+        </div>
+        <a href="https://www.google.com/maps/dir/Kinjofuto+Station,+Japan/Lives+Nagoya,+%E3%83%A1%E3%82%A4%E3%82%AB%E3%83%BC%E3%82%BA%E3%83%94%E3%82%A2+%E5%86%85,+%EF%BC%92%E4%B8%81%E7%9B%AE-7-1+%E9%87%91%E5%9F%8E%E3%81%B5%E9%A0%AD,+%E6%B8%AF%E5%8C%BA+%E5%90%8D%E5%8F%A4%E5%B1%8B%E5%B8%82+%E6%84%9B%E7%9F%A5%E7%9C%8C,+Japan/data=!4m14!4m13!1m5!1m1!19sChIJufcksch4A2AR2nmcVR5b0fM!2m2!1d136.8492477!2d35.0489567!1m5!1m1!19sChIJFxUR8TR5A2ARi3N-GPm2gLQ!2m2!1d136.8468079!2d35.0497975!3e2" target="_blank" class="route-btn">📍 駅からLives NAGOYAへのルート</a>
+
+        <div class="highlight-box">
+            <h3>✨ パーク内を歩きながらのお楽しみ！</h3>
+            <p style="font-size: 0.9em; margin-bottom: 5px;"><strong>① ミニフィグトレード 🔄</strong><br>
+            家から持ってきたレゴの人形（ミニフィグ）を、名札にミニフィグをつけているスタッフと交換できます！「トレードしよう！」と声をかけてみましょう。</p>
+            <p style="font-size: 0.9em; margin-bottom: 0;"><strong>② エリアシール集め 🎖️</strong><br>
+            パークの各エリアにいるスタッフに声をかけると、そのエリア限定のデザインシールが無料でもらえます。コンプリートを目指しましょう！</p>
         </div>
 
-        <h2 class="section-title">⏰ 当日のスケジュール</h2>
+        <h2 class="section-title">⏰ 当日の超ハードスケジュール</h2>
         <div class="timeline">
             <div class="event">
                 <div class="time">10:05</div>
                 <div class="title">📍 集合（Lives NAGOYA）</div>
-                <div class="desc">紫組の集合時間です。遅れないように向かいましょう。</div>
+                <div class="desc">紫組集合。<a href="https://maps.google.com/?cid=13006596904820044683&g_mp=Cidnb29nbGUubWFwcy5wbGFjZXMudjEuUGxhY2VzLlNlYXJjaFRleHQ" target="_blank" class="map-link">📍MAP</a></div>
             </div>
 
             <div class="event">
                 <div class="time">10:20頃</div>
-                <div class="title">📸 クラス写真撮影</div>
-                <div class="desc">保護者は1名のみ参加可能です。</div>
+                <div class="title">📸 写真撮影 〜 🏃‍♂️ 入場</div>
+                <div class="desc">撮影が終わった瞬間、レゴランドへダッシュで入場！</div>
             </div>
 
             <div class="event">
-                <div class="time">10:45</div>
-                <div class="title">🏃‍♂️ 自由行動スタート！真っ先にお店へ</div>
-                <div class="desc">レゴ・シティエリアへ直行します。</div>
+                <div class="time">10:45 〜 11:00</div>
+                <div class="title">🏁 爆走！シールラリー＆エリアシール収集</div>
+                <div class="desc"><span class="warning">【超速】</span>この15分間で園内のシールポイントを駆け回って終わらせます！すれ違うスタッフに「エリアシールください！」と声をかけるのも忘れずに。</div>
             </div>
 
             <div class="event">
                 <div class="time">11:00</div>
-                <div class="title">🍔 オープンと同時にランチ！</div>
-                <div class="desc">「ブリック・ハウス・バーガー」は平日11時オープン。一番乗りで席を確保し、名物レゴポテトと100%ビーフバーガーを堪能します。</div>
+                <div class="title">🍔 勝利のランチ（ブリック・ハウス・バーガー）</div>
+                <div class="desc">ラリー完走後、そのまま開店と同時に入店。一番乗りでハンバーガーを確保！</div>
             </div>
 
             <div class="event">
-                <div class="time">11:50</div>
-                <div class="title">🎠 ブリック・パーティ（ブリックトピア）</div>
-                <div class="desc">レゴブロックでできたポップで色鮮やかなメリーゴーランド。写真映え抜群で、女の子がとても喜ぶアトラクションです。</div>
+                <div class="time">11:45 〜</div>
+                <div class="title">🔥 ゴールデンタイム：待ち時間長くなりがち組</div>
+                <div class="desc">
+                    みんながご飯を食べている空き時間を利用して、回転率が悪く混みがちなアトラクションを真っ先に潰します。<br>
+                    1. <b>レスキュー・アカデミー</b>（火消し）<br>
+                    2. <b>コースト・ガード・HQ</b>（船の操縦）<br>
+                    3. <b>ドラゴン・アプレンティス</b>（小型コースター）
+                </div>
             </div>
 
             <div class="event">
-                <div class="time">12:30</div>
-                <div class="title">⚓ サブマリン・アドベンチャー（アドベンチャー）</div>
-                <div class="desc">本物の魚が泳ぐ水槽の中を潜水艦で進みます。身長110cmなら全く問題なし。窓から見えるレゴの古代遺跡とお魚のコラボは必見です。</div>
+                <div class="time">12:45 〜</div>
+                <div class="title">🎢 人気＆絶叫系アトラクション組</div>
+                <div class="desc">
+                    パークの定番・人気どころを制覇していきます。<br>
+                    ・<b>ザ・ドラゴン</b>（メインコースター。105cmから乗れます！）<br>
+                    ・<b>サブマリン・アドベンチャー</b>（大人気の潜水艦）<br>
+                    ・<b>レゴ・ファクトリー・ツアー</b>（工場見学）<br>
+                    ・<b>オブザベーション・タワー</b>（タワーで一休み）<br>
+                    ・<b>ブリック・パーティ</b>（メリーゴーランド）
+                </div>
             </div>
 
             <div class="event">
-                <div class="time">13:10</div>
-                <div class="title">🗼 ミニランドでイラスト資料集め</div>
-                <div class="desc">パーク中央へ。日本中の名所がレゴで精巧に、かつ可愛らしくデフォルメされています。クリスタでイラストを描く際の素晴らしいインスピレーション源になります。</div>
+                <div class="time">14:15</div>
+                <div class="title">🗼 ミニランド（資料撮影）</div>
+                <div class="desc">クリスタ用のデフォルメ風景資料をササッと撮影。</div>
             </div>
 
             <div class="event">
-                <div class="time">14:00</div>
-                <div class="title">🏰 ドラゴン・アプレンティス（ナイト・キングダム）</div>
-                <div class="desc">105cmから乗れる小型ジェットコースター！コースターデビューにぴったりな適度なスピードです。パパママと一緒に乗って騎士見習いに。</div>
+                <div class="time">14:45</div>
+                <div class="title">🐠 シーライフ名古屋（水族館）</div>
+                <div class="desc">レゴランドを出て（再入場スタンプを忘れずに）、正面のシーライフへ。レゴと魚がコラボした幻想的な世界。約1時間で癒やされながら回ります。</div>
             </div>
 
             <div class="event">
-                <div class="time">14:40</div>
-                <div class="title">🚒 レスキュー・アカデミー（レゴ・シティ）</div>
-                <div class="desc">家族3人でポンプを漕いで消防車を動かし、火消しをする参加型アトラクション。パパの体力が試されます！</div>
+                <div class="time">15:40</div>
+                <div class="title">🎁 最後のお土産・退園</div>
+                <div class="desc">エントランス付近で最後のお買い物。</div>
             </div>
 
             <div class="event">
-                <div class="time">15:10</div>
-                <div class="title">🎁 ビッグ・ショップでお土産探し</div>
-                <div class="desc">エントランス付近のアジア最大級のショップへ。</div>
-            </div>
-
-            <div class="event">
-                <div class="time">15:40〜16:00</div>
-                <div class="title">👋 退園・帰路へ</div>
-                <div class="desc">予定通り16時前にはパークを出発します。</div>
+                <div class="time">16:00</div>
+                <div class="title">👋 帰路へ</div>
+                <div class="desc">金城ふ頭駅へ向かいます。お疲れ様でした！</div>
             </div>
         </div>
 
-        <h2 class="section-title">🎀 女の子が喜ぶ！かわいいお土産</h2>
-        <div class="souvenir-box">
-            <div class="souvenir-item">
-                <strong>① ビルド・ア・ミニフィギュア</strong><br>
-                「かお」「からだ」「あし」「ヘア」「小物」のパーツを自分で選んで、オリジナルのレゴフィギュアを3体作れるコーナー。自分そっくりにしたり、かわいい服を選んだり、女の子が絶対に夢中になる体験型のお土産です。
-            </div>
-            <div class="souvenir-item">
-                <strong>② レゴランド限定 カラフルアニマルぬいぐるみ</strong><br>
-                レゴブロックのようなカラフルな柄のゾウやパンダのぬいぐるみ（約2,000円〜）。レゴランドでしか買えない限定品で、キーチェーンサイズもあります。
-            </div>
-            <div class="souvenir-item">
-                <strong>③ 女の子ミニフィグのマグネット</strong><br>
-                「I ♡ LEGOLAND」の服を着たかわいい女の子のマグネット。冷蔵庫やホワイトボードに貼れて実用的です。
-            </div>
-        </div>
-
-        <h2 class="section-title">🔗 お役立ちリンク集</h2>
+        <h2 class="section-title">🔗 リンク集</h2>
         <div class="link-section">
-            <a href="https://www.legoland.jp/resort-guide/service/mobile-app/" target="_blank" class="link-btn">📱 公式アプリ（待ち時間・詳細マップ）</a>
-            <a href="https://www.legoland.jp/resort-guide/legoland/food/brick-house-burgers/" target="_blank" class="link-btn">🍔 ブリック・ハウス・バーガー メニュー</a>
-            <a href="https://www.legoland.jp/operation/info/opening-hours/operation-hours-legoland-japan/" target="_blank" class="link-btn">🕒 営業時間カレンダー</a>
+            <a href="https://www.legoland.jp/resort-guide/kids-guide/minifigures-trade/" target="_blank" class="link-btn">🔄 ミニフィグトレードの公式ルール</a>
+            <a href="https://here-we-lego.com/legoland-theday/" target="_blank" class="link-btn article-link">📖 参考記事：レゴランド攻略法</a>
+            <a href="https://www.legoland.jp/resort-guide/sealife-nagoya/" target="_blank" class="link-btn">🐠 シーライフ名古屋 公式</a>
+            <a href="https://www.legoland.jp/resort-guide/service/mobile-app/" target="_blank" class="link-btn">📱 公式アプリ（待ち時間チェック）</a>
         </div>
     </div>
 </div>
