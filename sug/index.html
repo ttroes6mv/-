@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WIZARDRY: The Kindergarten Bus Encounter</title>
+<style>
+  body {
+    background-color: #050505;
+    color: #fff;
+    font-family: "MS Gothic", "Hiragino Mincho Pro", monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    user-select: none;
+  }
+
+  .game-container {
+    width: 800px;
+    border: 4px double #ccc;
+    padding: 15px;
+    background-color: #000;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  }
+
+  /* 画像エリア：リアルで綺麗な画像を表現 */
+  .image-area {
+    width: 100%;
+    height: 400px;
+    border: 2px solid #ccc;
+    margin-bottom: 15px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .image-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* 綺麗でリアルな雰囲気を強調するフィルター */
+    filter: contrast(1.1) brightness(0.9) saturate(1.2);
+    transition: filter 1s;
+  }
+
+  /* 昔のRPG風の走査線エフェクト */
+  .image-area::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
+    pointer-events: none;
+  }
+
+  .ui-area {
+    display: flex;
+    gap: 15px;
+    height: 160px;
+  }
+
+  .text-window {
+    flex: 3;
+    border: 2px solid #ccc;
+    padding: 15px;
+    font-size: 22px;
+    line-height: 1.6;
+    letter-spacing: 2px;
+    position: relative;
+  }
+
+  .command-window {
+    flex: 1;
+    border: 2px solid #ccc;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .command-btn {
+    background: none;
+    border: none;
+    color: #ccc;
+    font-family: inherit;
+    font-size: 22px;
+    text-align: left;
+    cursor: pointer;
+    transition: color 0.1s;
+    letter-spacing: 2px;
+  }
+
+  .command-btn:hover {
+    color: #fff;
+    text-shadow: 0 0 5px #fff;
+  }
+
+  .command-btn::before {
+    content: "▶ ";
+    opacity: 0;
+  }
+
+  .command-btn:hover::before {
+    opacity: 1;
+  }
+
+  /* 点滅するカーソル */
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 22px;
+    background-color: #fff;
+    animation: blink 1s step-end infinite;
+    vertical-align: bottom;
+    margin-left: 5px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="game-container">
+  <div class="image-area">
+    <img src="https://images.unsplash.com/photo-1519689680058-324335c77eba?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Realistic Daughter and Bus">
+  </div>
+  
+  <div class="ui-area">
+    <div class="text-window" id="message-box">
+      </div>
+    
+    <div class="command-window" id="command-box">
+      </div>
+  </div>
+</div>
+
+<script>
+  // シナリオデータ
+  const scenarios = [
+    {
+      text: "ようちえんバスから むすめ が おりてきた！\n\nむすめ は バッグを さしながら いった。\n「このなかに こいのぼりパンが はいっている」",
+      commands: [
+        { label: "みる", nextScene: 0 },
+        { label: "はなす", nextScene: 1 }
+      ]
+    },
+    {
+      text: "ははおや は たずねた。\n「あら、鼻水ついてるー。\n　拭いてもらえなかったんだ？」",
+      commands: [
+        { label: "きく", nextScene: 2 }
+      ]
+    },
+    {
+      text: "むすめ は しずかに こたえた。\n\n「ウェットティッシュは ないんだ。\n　ティッシュしか ない」",
+      commands: [
+        { label: "はなをかむ", nextScene: 3 },
+        { label: "にげる", nextScene: 3 }
+      ]
+    },
+    {
+      text: "―― 迷宮の 深淵に ふれた 気がした ――\n\n（こうして 今日も 日常という名の\n　冒険は 続いていく……）",
+      commands: [
+        { label: "やりなおす", nextScene: 0 }
+      ]
+    }
+  ];
+
+  let isTyping = false;
+
+  // タイピングエフェクト関数
+  function typeText(text, callback) {
+    const messageBox = document.getElementById('message-box');
+    messageBox.innerHTML = '';
+    isTyping = true;
+    let i = 0;
+
+    function type() {
+      if (i < text.length) {
+        if (text.charAt(i) === '\n') {
+          messageBox.innerHTML += '<br>';
+        } else {
+          messageBox.innerHTML += text.charAt(i);
+        }
+        i++;
+        // テキストの表示速度（ミリ秒）
+        setTimeout(type, 40);
+      } else {
+        messageBox.innerHTML += '<span class="cursor"></span>';
+        isTyping = false;
+        if (callback) callback();
+      }
+    }
+    type();
+  }
+
+  // シーンを描画する関数
+  function renderScene(sceneIndex) {
+    const scene = scenarios[sceneIndex];
+    const commandBox = document.getElementById('command-box');
+    
+    // コマンドを一旦非表示
+    commandBox.innerHTML = '';
+    
+    // テキストを表示
+    typeText(scene.text, () => {
+      // テキスト表示完了後にコマンドを表示
+      scene.commands.forEach(cmd => {
+        const btn = document.createElement('button');
+        btn.className = 'command-btn';
+        btn.textContent = cmd.label;
+        btn.onclick = () => {
+          if (!isTyping) {
+            renderScene(cmd.nextScene);
+          }
+        };
+        commandBox.appendChild(btn);
+      });
+    });
+  }
+
+  // 初期シーンの読み込み
+  window.onload = () => {
+    renderScene(0);
+  };
+</script>
+
+</body>
+</html>
