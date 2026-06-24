@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>布団乾燥機 比較レポート｜母さん向け</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#161E38; --night2:#283566;
+    --ink:#1C2340; --text:#393D49; --mute:#8A8676;
+    --paper:#FBF8F3; --card:#FFFFFF; --line:#ECE6DA;
+    --amber:#F2A93B; --gold:#E8842B; --ember:#DB4A2A; --sun:#F4C95B;
+    --cool:#5C6B8A;
+    --heat:linear-gradient(90deg,#F4C95B 0%,#F2A93B 38%,#E8842B 68%,#DB4A2A 100%);
+    --radius:18px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--paper); color:var(--text);
+    font-family:"Zen Kaku Gothic New",system-ui,sans-serif;
+    font-size:16px; line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.disp{font-family:"Zen Maru Gothic",sans-serif;}
+  .num{font-family:"Outfit",sans-serif; font-feature-settings:"tnum"; letter-spacing:-.01em;}
+  .wrap{width:100%; max-width:760px; margin:0 auto; padding:0 22px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; overflow:hidden; color:#F4F1EA;
+    background:
+      radial-gradient(120% 90% at 82% -10%, rgba(242,169,59,.55), rgba(219,74,42,.18) 38%, transparent 64%),
+      linear-gradient(160deg,var(--night) 0%, var(--night2) 100%);
+    padding:64px 0 80px;
+  }
+  .hero::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:6px;
+    background:var(--heat);
+  }
+  .eyebrow{
+    font-family:"Outfit",sans-serif; font-weight:700; font-size:12.5px;
+    letter-spacing:.26em; text-transform:uppercase; color:var(--sun);
+    display:flex; align-items:center; gap:10px; margin-bottom:18px;
+  }
+  .eyebrow::before{content:""; width:26px; height:2px; background:var(--sun); display:inline-block;}
+  .hero h1{
+    font-weight:900; font-size:clamp(30px,7.4vw,50px); line-height:1.18;
+    margin:0 0 18px; color:#FFFCF6; letter-spacing:.005em;
+  }
+  .hero h1 em{font-style:normal; color:var(--sun);}
+  .hero p.lede{font-size:16.5px; color:#D7DAE6; max-width:50ch; margin:0 0 30px;}
+
+  .verdict{
+    background:rgba(255,255,255,.06); border:1px solid rgba(244,201,91,.32);
+    border-radius:var(--radius); padding:22px 22px 20px; backdrop-filter:blur(4px);
+  }
+  .verdict .tag{
+    display:inline-block; font-family:"Outfit",sans-serif; font-weight:700; font-size:11.5px;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--night);
+    background:var(--heat); padding:5px 11px; border-radius:100px; margin-bottom:14px;
+  }
+  .verdict .vmain{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap; margin-bottom:6px;}
+  .verdict .vname{font-family:"Zen Maru Gothic"; font-weight:700; font-size:23px; color:#fff;}
+  .verdict .vprice{font-family:"Outfit"; font-weight:700; font-size:24px; color:var(--sun);}
+  .verdict .vprice small{font-size:13px; font-weight:500; color:#C8B98C; margin-left:2px;}
+  .verdict .vwhy{font-size:14.5px; color:#CDD2E0; margin:8px 0 0;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:56px 0;}
+  .sec-head{margin-bottom:30px;}
+  .sec-kicker{
+    font-family:"Outfit"; font-weight:700; font-size:12px; letter-spacing:.22em;
+    text-transform:uppercase; color:var(--gold); margin-bottom:9px;
+  }
+  .sec-head h2{font-weight:900; font-size:clamp(22px,5vw,29px); color:var(--ink); margin:0; line-height:1.3;}
+  .sec-head p{color:var(--mute); font-size:15px; margin:10px 0 0; max-width:54ch;}
+
+  /* ---------- FORKS ---------- */
+  .forks{display:grid; gap:16px;}
+  @media(min-width:620px){.forks{grid-template-columns:1fr 1fr;}}
+  .fork{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; position:relative;
+  }
+  .fork h3{margin:0 0 4px; font-size:17px; color:var(--ink); font-weight:700;}
+  .fork .sub{font-size:12.5px; color:var(--gold); font-weight:700; font-family:"Outfit"; letter-spacing:.04em; margin-bottom:12px;}
+  .fork p{margin:0; font-size:14px; color:var(--text);}
+  .fork .good{color:#2E7D5B; font-weight:700;}
+  .fork .warn{color:var(--ember); font-weight:700;}
+
+  .callout{
+    margin-top:22px; display:flex; gap:16px; align-items:center;
+    background:linear-gradient(100deg,#FFF3E0,#FDE7DD);
+    border:1px solid #F3D4B8; border-radius:var(--radius); padding:18px 20px;
+  }
+  .callout .temp{
+    font-family:"Outfit"; font-weight:800; font-size:34px; line-height:1;
+    background:var(--heat); -webkit-background-clip:text; background-clip:text; color:transparent;
+    flex-shrink:0;
+  }
+  .callout p{margin:0; font-size:14px; color:#7A3B1E;}
+  .callout strong{color:var(--ember);}
+
+  /* ---------- PRODUCT CARDS ---------- */
+  .cards{display:grid; gap:18px;}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .card.pick{border:1.5px solid var(--gold); box-shadow:0 10px 34px -18px rgba(219,74,42,.5);}
+  .card:hover{transform:translateY(-3px); box-shadow:0 14px 36px -20px rgba(28,35,64,.4);}
+  .card .top{display:flex; justify-content:space-between; align-items:flex-start; gap:14px; margin-bottom:4px;}
+  .card .name{font-family:"Zen Maru Gothic"; font-weight:700; font-size:18.5px; color:var(--ink); line-height:1.35;}
+  .card .type{font-size:12px; color:var(--mute); font-weight:500; margin-top:3px;}
+  .card .price{font-family:"Outfit"; font-weight:800; font-size:21px; color:var(--ink); white-space:nowrap; text-align:right;}
+  .card .price small{display:block; font-size:10.5px; font-weight:600; color:var(--mute); letter-spacing:.04em; text-align:right;}
+  .pickbadge{
+    display:inline-block; font-family:"Outfit"; font-weight:700; font-size:10.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:#fff; background:var(--ember); padding:3px 9px; border-radius:100px; margin-bottom:8px;
+  }
+  .gauges{margin:16px 0 14px; display:grid; gap:10px;}
+  .g{display:grid; grid-template-columns:78px 1fr; align-items:center; gap:12px;}
+  .g .glab{font-size:12px; color:var(--mute); font-weight:700;}
+  .g .track{height:8px; border-radius:100px; background:#EFEAE0; overflow:hidden;}
+  .g .fill{height:100%; border-radius:100px; background:var(--heat); width:0; transition:width 1s cubic-bezier(.4,0,.2,1);}
+  .meta{display:flex; flex-wrap:wrap; gap:7px; margin-top:4px;}
+  .chip{font-size:11.5px; font-weight:700; padding:4px 10px; border-radius:100px; background:#F4EFE6; color:#6B6453;}
+  .chip.pro{background:#E6F4EC; color:#2E7D5B;}
+  .chip.con{background:#FCEAE4; color:#C0432A;}
+  .card .note{font-size:13px; color:var(--text); margin:12px 0 0; padding-top:12px; border-top:1px dashed var(--line);}
+
+  /* ---------- GOAL PICKER ---------- */
+  .goals{display:grid; gap:12px;}
+  .goal{
+    display:flex; align-items:center; gap:16px; background:var(--card);
+    border:1px solid var(--line); border-radius:14px; padding:16px 18px;
+  }
+  .goal .if{flex:1; font-size:14.5px; color:var(--ink); font-weight:500;}
+  .goal .arw{color:var(--gold); font-weight:800; font-family:"Outfit"; flex-shrink:0;}
+  .goal .then{
+    font-family:"Zen Maru Gothic"; font-weight:700; font-size:14.5px; color:#fff;
+    background:linear-gradient(120deg,var(--gold),var(--ember)); padding:8px 14px; border-radius:100px;
+    flex-shrink:0; text-align:center;
+  }
+  @media(max-width:520px){
+    .goal{flex-wrap:wrap; gap:10px;}
+    .goal .then{width:100%;}
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--night); color:#C7CBD8; padding:40px 0 48px; position:relative;}
+  footer::before{content:""; position:absolute; top:0; left:0; right:0; height:5px; background:var(--heat);}
+  footer .big{font-family:"Zen Maru Gothic"; font-weight:700; color:#fff; font-size:18px; line-height:1.6; margin:0 0 16px;}
+  footer .big em{font-style:normal; color:var(--sun);}
+  footer .fine{font-size:12px; color:#7E849A; line-height:1.7; margin:0;}
+
+  /* reveal */
+  .reveal{opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease;}
+  .reveal.in{opacity:1; transform:none;}
+  @media(prefers-reduced-motion:reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .g .fill{transition:none;}
+    html{scroll-behavior:auto;}
+  }
+  a:focus-visible,.card:focus-visible{outline:3px solid var(--gold); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">比較レポート · 2026.06</div>
+    <h1>母さんの布団乾燥機、<br><em>どれにする？</em></h1>
+    <p class="lede">兄貴の推すシャープを軸に、目的別で迷わず決められるようにまとめた。読みどころは「ダニ退治を本気でやるかどうか」だけ。</p>
+    <div class="verdict">
+      <span class="tag">本命 · 母さん向け</span>
+      <div class="vmain">
+        <span class="vname">シャープ UD-DF1</span>
+        <span class="vprice num">¥12,000<small>前後（最安11,800〜）</small></span>
+      </div>
+      <p class="vwhy">操作は3ボタンだけ・軽くて静か・消臭が強い。兄貴の家とほぼ同じ機種だから使い方も教えやすい。あたため＋ニオイ取りが目的ならこれでGO。</p>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">選び方の軸</div>
+      <h2>迷うのは、実質この2つだけ</h2>
+      <p>細かいスペックより、まずこの分岐を押さえると一気に絞れる。</p>
+    </div>
+    <div class="forks">
+      <div class="fork reveal">
+        <h3>① マットあり / なし</h3>
+        <div class="sub">最大の分岐点</div>
+        <p><span class="good">マットなし</span>＝差すだけで手軽・コンパクト。毎日使う高齢者向き。ただし熱にムラが出やすい。<br><br><span class="good">マットあり</span>＝すみずみ均一に温まりダニに強い。設置の手間はかかる。</p>
+      </div>
+      <div class="fork reveal">
+        <h3>② ダニ退治の本気度</h3>
+        <div class="sub">ここで機種が変わる</div>
+        <p>あたため・消臭が目的なら<span class="good">マットなしで十分</span>。<br><br>ダニ最優先なら、<span class="warn">マットなしは力不足</span>。マットあり or 高出力ツインノズルへ。</p>
+      </div>
+    </div>
+    <div class="callout reveal">
+      <span class="temp num">50℃</span>
+      <p>ダニを死滅させるには<strong>布団全体を50℃以上</strong>にする必要がある。シャープ・象印のようなマットなしは<strong>ノズル付近しか上がらず</strong>、ダニが逃げる余地が残るのが弱点。</p>
+    </div>
+  </div>
+</section>
+
+<section style="background:linear-gradient(180deg,#fff,#FBF6EE);">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">主要5機種</div>
+      <h2>性能と値段で並べて比較</h2>
+      <p>バーは「あたため速度・ダニ対策・操作の手軽さ」の目安。長い＝得意。</p>
+    </div>
+    <div class="cards">
+
+      <article class="card pick reveal" tabindex="0">
+        <span class="pickbadge">本命</span>
+        <div class="top">
+          <div><div class="name">シャープ UD-DF1</div><div class="type">マットなし／プラズマクラスター</div></div>
+          <div class="price num">¥12,000<small>最安 11,800〜</small></div>
+        </div>
+        <div class="gauges">
+          <div class="g"><span class="glab">あたため速度</span><div class="track"><div class="fill" data-w="50"></div></div></div>
+          <div class="g"><span class="glab">ダニ対策</span><div class="track"><div class="fill" data-w="45"></div></div></div>
+          <div class="g"><span class="glab">操作の手軽さ</span><div class="track"><div class="fill" data-w="90"></div></div></div>
+        </div>
+        <div class="meta">
+          <span class="chip pro">3ボタンで簡単</span><span class="chip pro">消臭・空気浄化</span><span class="chip pro">軽量3.1kg・収納ラク</span><span class="chip con">あたため遅め</span>
+        </div>
+        <p class="note">型落ちの <b>UD-CF1</b> は中身ほぼ同じでさらに安い場合あり。値段重視ならそちらも。</p>
+      </article>
+
+      <article class="card reveal" tabindex="0">
+        <div class="top">
+          <div><div class="name">象印 スマートドライ RF-UA10</div><div class="type">マット＆ホースなし</div></div>
+          <div class="price num">¥13,000<small>前後</small></div>
+        </div>
+        <div class="gauges">
+          <div class="g"><span class="glab">あたため速度</span><div class="track"><div class="fill" data-w="60"></div></div></div>
+          <div class="g"><span class="glab">ダニ対策</span><div class="track"><div class="fill" data-w="55"></div></div></div>
+          <div class="g"><span class="glab">操作の手軽さ</span><div class="track"><div class="fill" data-w="100"></div></div></div>
+        </div>
+        <div class="meta">
+          <span class="chip pro">開く→ONだけ</span><span class="chip pro">布団かぶり検知</span><span class="chip con">置き方にコツ要</span>
+        </div>
+        <p class="note">ホースすら無くて一番ラク。ただし布団の上に枕や服を置くとそこは冷たいまま、という指摘あり。</p>
+      </article>
+
+      <article class="card reveal" tabindex="0">
+        <div class="top">
+          <div><div class="name">パナソニック FD-F06A7</div><div class="type">マットあり</div></div>
+          <div class="price num">¥5,500<small>5,000〜6,000</small></div>
+        </div>
+        <div class="gauges">
+          <div class="g"><span class="glab">あたため速度</span><div class="track"><div class="fill" data-w="95"></div></div></div>
+          <div class="g"><span class="glab">ダニ対策</span><div class="track"><div class="fill" data-w="95"></div></div></div>
+          <div class="g"><span class="glab">操作の手軽さ</span><div class="track"><div class="fill" data-w="40"></div></div></div>
+        </div>
+        <div class="meta">
+          <span class="chip pro">温め性能トップ級</span><span class="chip pro">全体ムラなく50℃超</span><span class="chip pro">安い</span><span class="chip con">マット設置が手間</span>
+        </div>
+        <p class="note">ダニを本気で退治したいならこれ。約15分で中心50℃超え。手間を許容できればコスパ最強。</p>
+      </article>
+
+      <article class="card reveal" tabindex="0">
+        <div class="top">
+          <div><div class="name">日立 アッとドライ ツインノズル</div><div class="type">マットなし／2本ノズル</div></div>
+          <div class="price num">¥11,000<small>11,000〜15,000</small></div>
+        </div>
+        <div class="gauges">
+          <div class="g"><span class="glab">あたため速度</span><div class="track"><div class="fill" data-w="80"></div></div></div>
+          <div class="g"><span class="glab">ダニ対策</span><div class="track"><div class="fill" data-w="80"></div></div></div>
+          <div class="g"><span class="glab">操作の手軽さ</span><div class="track"><div class="fill" data-w="65"></div></div></div>
+        </div>
+        <div class="meta">
+          <span class="chip pro">両面ダニ対策</span><span class="chip pro">温まり速い</span><span class="chip con">やや大きめ</span>
+        </div>
+        <p class="note">速さと両面ダニ対策をマットなしで両立。約20分で表面50℃近く。</p>
+      </article>
+
+      <article class="card reveal" tabindex="0">
+        <div class="top">
+          <div><div class="name">アイリスオーヤマ カラリエ</div><div class="type">マットなし／FK-C2・ツインノズル等</div></div>
+          <div class="price num">¥7,000<small>7,000〜10,000</small></div>
+        </div>
+        <div class="gauges">
+          <div class="g"><span class="glab">あたため速度</span><div class="track"><div class="fill" data-w="60"></div></div></div>
+          <div class="g"><span class="glab">ダニ対策</span><div class="track"><div class="fill" data-w="55"></div></div></div>
+          <div class="g"><span class="glab">操作の手軽さ</span><div class="track"><div class="fill" data-w="80"></div></div></div>
+        </div>
+        <div class="meta">
+          <span class="chip pro">安い・超軽量</span><span class="chip pro">モデル豊富</span><span class="chip con">作りは価格なり</span>
+        </div>
+        <p class="note">とにかく安く小さく済ませたい人向け。ツインノズルの上位モデルならパワーも稼げる。</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-kicker">目的別おすすめ</div>
+      <h2>母さんの「一番の目的」で即決</h2>
+      <p>冬のあたため／湿気・カビ／ダニ／ニオイ ── 一つ聞けば、ここで決まる。</p>
+    </div>
+    <div class="goals">
+      <div class="goal reveal"><span class="if">冬のあたため＋消臭がメイン／操作は簡単に</span><span class="arw">→</span><span class="then">シャープ UD-DF1</span></div>
+      <div class="goal reveal"><span class="if">準備すら面倒・機械が苦手</span><span class="arw">→</span><span class="then">象印 スマートドライ</span></div>
+      <div class="goal reveal"><span class="if">ダニ退治を本気で・予算も抑えたい</span><span class="arw">→</span><span class="then">パナソニック FD-F06A7</span></div>
+      <div class="goal reveal"><span class="if">速さ＆両面ダニをマットなしで</span><span class="arw">→</span><span class="then">日立 ツインノズル</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="big">あたため・消臭が目的なら<em>シャープでGO</em>。<br>ダニが目的なら<em>パナ or 日立</em>に振る。これで外さない。</p>
+    <p class="fine">価格は2026年6月時点の実売目安（税込・変動あり）。購入前に各ショップで最新価格を確認のこと。電気代は1時間あたり約16〜20円で、毎日使っても月数百円程度。バーの長さは各種レビュー・検証記事をもとにした相対的な目安です。</p>
+  </div>
+</footer>
+
+<script>
+  // gauge fill + reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        e.target.querySelectorAll && e.target.querySelectorAll('.fill').forEach(f=>{
+          f.style.width = (f.dataset.w||0)+'%';
+        });
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.18});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // ensure card gauges fill even if card itself is the observed reveal
+  document.querySelectorAll('.card').forEach(c=>io.observe(c));
+</script>
+</body>
+</html>
