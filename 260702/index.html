@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ジブリパーク だいさんぽ しおり｜2026.7.4（土）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&family=Yomogi&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4EFE0;--paper2:#FDFBF3;--ink:#37453B;--forest:#2E5A46;--forest-deep:#1F4434;
+    --leaf:#77A057;--leaf-soft:#E8EEDB;--lantern:#E07A3E;--lantern-soft:#FBEADD;
+    --berry:#C64A3B;--berry-soft:#F6E2DE;
+    --sky:#5C93B4;--sky-soft:#E1EDF2;--gold:#E7B547;--gold-soft:#FBF2DA;
+    --line:#DDD3BA;--brown:#7A5A3A;--plum:#8A56A6;--plum-soft:#EEE6F3;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    font-family:'Zen Maru Gothic','Hiragino Maru Gothic ProN','Yu Gothic',Meiryo,sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 10% 4%, rgba(231,181,71,.12), transparent 28%),
+      radial-gradient(circle at 92% 96%, rgba(138,86,166,.09), transparent 32%),
+      var(--paper);
+    line-height:1.78;letter-spacing:.01em;
+  }
+  .wrap{max-width:740px;margin:0 auto;padding:22px 18px 70px;}
+  a{color:var(--sky);text-decoration:none;}
+
+  /* ---------- link pill ---------- */
+  .lk{
+    display:inline-flex;align-items:center;gap:4px;
+    font-size:.7rem;font-weight:700;color:var(--sky);
+    background:var(--sky-soft);border:1px solid #C4DBE7;border-radius:999px;
+    padding:1px 9px;margin:2px 4px 0 0;vertical-align:middle;white-space:nowrap;
+  }
+  .lk::before{content:"🔗";font-size:.62rem;}
+  .lk-row{margin-top:7px;line-height:1.9;}
+
+  /* ---------- cover ---------- */
+  .cover{position:relative;background:var(--paper2);border:2.5px solid var(--forest);
+    border-radius:28px;padding:0;box-shadow:0 18px 36px -22px rgba(31,68,52,.6);overflow:hidden;}
+  .cover-inner{padding:26px 26px 22px;}
+  .cover .eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;letter-spacing:.2em;
+    color:var(--forest);font-weight:700;border:1.5px solid var(--leaf);border-radius:999px;
+    padding:4px 15px;background:var(--leaf-soft);}
+  .cover h1{margin:.55rem 0 .1rem;font-size:2.15rem;line-height:1.26;font-weight:900;color:var(--forest-deep);}
+  .cover h1 .accent{color:var(--lantern);}
+  .cover .datebar{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+  .datebar span{background:var(--gold-soft);border:1.5px solid var(--gold);color:#7a5c14;
+    font-weight:700;font-size:.82rem;border-radius:10px;padding:3px 12px;}
+  .cover .whom{margin-top:10px;font-size:.95rem;color:var(--brown);}
+  .cover .whom b{color:var(--forest);}
+  .scene{width:100%;height:auto;display:block;}
+  .cover .note{font-family:'Yomogi',cursive;background:var(--sky-soft);border-radius:16px;
+    padding:13px 16px;margin-top:14px;color:var(--forest);font-size:1.02rem;border:1.5px dashed var(--sky);}
+
+  /* ---------- section ---------- */
+  section{margin-top:34px;}
+  .sec-head{display:flex;align-items:center;gap:12px;margin-bottom:13px;}
+  .sec-num{flex:0 0 auto;width:40px;height:40px;border-radius:14px;background:var(--forest);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:1.2rem;
+    box-shadow:0 4px 10px -4px rgba(31,68,52,.5);}
+  .sec-head h2{margin:0;font-size:1.32rem;color:var(--forest-deep);font-weight:900;}
+  .sec-head .sub{font-size:.78rem;color:var(--brown);font-weight:500;}
+  .card{background:var(--paper2);border:1.5px solid var(--line);border-radius:20px;padding:17px 18px;
+    box-shadow:0 8px 20px -16px rgba(122,90,58,.35);}
+  .card + .card{margin-top:12px;}
+
+  /* ---------- overview ---------- */
+  .facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .fact{background:var(--leaf-soft);border-radius:14px;padding:11px 14px;border:1px solid #D8E4C8;}
+  .fact .k{font-size:.7rem;color:#5d8442;font-weight:700;letter-spacing:.06em;}
+  .fact .v{font-size:1rem;color:var(--forest-deep);font-weight:800;margin-top:1px;}
+  .route-chips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:13px;font-weight:700;}
+  .route-chips .ch{background:#fff;border:1.5px solid var(--line);border-radius:999px;
+    padding:4px 13px;font-size:.85rem;color:var(--forest);}
+  .route-chips .ch small{color:var(--brown);font-weight:500;}
+  .route-chips .ar{color:var(--lantern);font-weight:900;}
+  .rain{margin-top:13px;display:flex;gap:12px;align-items:flex-start;background:var(--sky-soft);
+    border-radius:15px;padding:13px 15px;border:1.5px solid var(--sky);font-size:.92rem;}
+  .rain .big{font-size:1.6rem;line-height:1.1;}
+  .rain b{color:#3f7495;}
+  .rain .warn{color:var(--berry);font-weight:700;}
+
+  /* ---------- honest Q&A ---------- */
+  .qa{background:linear-gradient(135deg,#FFF9EC,#FDF3DF);border:2px solid var(--gold);
+    border-radius:20px;padding:17px 18px;box-shadow:0 10px 24px -18px rgba(180,140,40,.5);}
+  .qa .q{display:flex;gap:10px;align-items:flex-start;font-weight:900;color:#8a6516;font-size:1.02rem;margin-bottom:8px;}
+  .qa .q .b{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--gold);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:.85rem;margin-top:2px;}
+  .qa .a{font-size:.92rem;}
+  .qa .a b{color:var(--forest-deep);}
+  .plan2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:11px;}
+  .plan{background:#fff;border-radius:14px;padding:12px 13px;border:1.5px solid var(--line);font-size:.86rem;}
+  .plan.reco{border-color:var(--lantern);box-shadow:0 6px 14px -10px rgba(224,122,62,.55);}
+  .plan h4{margin:0 0 4px;font-size:.92rem;color:var(--forest-deep);}
+  .plan .badge{display:inline-block;font-size:.66rem;font-weight:700;border-radius:6px;padding:1px 8px;margin-bottom:5px;}
+  .plan.reco .badge{background:var(--lantern);color:#fff;}
+  .plan:not(.reco) .badge{background:#EDE7D8;color:var(--brown);}
+  .plan ul{margin:4px 0 0;padding-left:1.1em;}
+  .plan li{margin:2px 0;}
+
+  /* ---------- access ticket ---------- */
+  .ticket{background:var(--paper2);border:2px dashed var(--forest);border-radius:18px;padding:6px 4px;position:relative;}
+  .ticket::before,.ticket::after{content:"";position:absolute;width:22px;height:22px;border-radius:50%;
+    background:var(--paper);border:2px dashed var(--forest);top:50%;transform:translateY(-50%);}
+  .ticket::before{left:-13px;}
+  .ticket::after{right:-13px;}
+  .leg{display:grid;grid-template-columns:82px 1fr;gap:8px;align-items:center;padding:9px 20px;}
+  .leg + .leg{border-top:1px dashed var(--line);}
+  .leg .stn{font-weight:900;color:var(--forest-deep);font-size:1rem;}
+  .leg .stn small{display:block;font-weight:500;color:var(--brown);font-size:.7rem;letter-spacing:0;}
+  .leg .line{display:inline-flex;align-items:center;gap:7px;font-size:.9rem;}
+  .pill{font-size:.72rem;font-weight:700;color:#fff;border-radius:999px;padding:2px 10px;white-space:nowrap;}
+  .p-meijo{background:#8A56A6;}.p-higashi{background:#E4A62B;color:#4a3400;}
+  .p-linimo{background:var(--sky);}.p-walk{background:var(--leaf);}
+  .leg .time{font-size:.78rem;color:var(--brown);}
+  .depart,.arrive{text-align:center;font-weight:800;color:var(--lantern);padding:9px;font-size:.95rem;}
+  .depart{border-bottom:1px dashed var(--line);}
+  .arrive{border-top:1px dashed var(--line);}
+  .backtrip{margin-top:12px;background:var(--leaf-soft);border-radius:15px;padding:13px 15px;font-size:.92rem;border:1px solid #D8E4C8;}
+  .backtrip b{color:var(--forest-deep);}
+  .hl{background:linear-gradient(transparent 62%, #F7DDA0 62%);font-weight:700;}
+
+  /* ---------- map ---------- */
+  .mapcard{background:var(--paper2);border:2px solid var(--forest);border-radius:20px;padding:14px 14px 10px;
+    box-shadow:0 12px 26px -18px rgba(31,68,52,.5);}
+  .mapcard svg{width:100%;height:auto;display:block;border-radius:12px;}
+  .maplegend{display:flex;flex-wrap:wrap;gap:10px;margin-top:9px;font-size:.78rem;color:var(--brown);}
+  .maplegend span{display:inline-flex;align-items:center;gap:5px;}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block;}
+  .mapnote{font-size:.72rem;color:var(--brown);margin-top:5px;}
+
+  /* ---------- timeline ---------- */
+  .tl{position:relative;padding-left:6px;}
+  .tl-item{display:grid;grid-template-columns:60px 1fr;gap:12px;padding:3px 0;}
+  .tl-time{text-align:right;font-weight:900;color:var(--lantern);font-size:.92rem;padding-top:9px;white-space:nowrap;}
+  .tl-body{position:relative;border-left:3px solid var(--line);padding:8px 0 13px 18px;}
+  .tl-item:last-child .tl-body{border-color:transparent;}
+  .tl-dot{position:absolute;left:-9px;top:12px;width:15px;height:15px;border-radius:50%;
+    background:var(--leaf);border:3px solid var(--paper);}
+  .tl-item.star .tl-dot{background:var(--lantern);}
+  .tl-item.majo .tl-dot{background:var(--plum);}
+  .tl-body h3{margin:0 0 2px;font-size:1.02rem;color:var(--forest-deep);}
+  .tl-body p{margin:0;font-size:.89rem;}
+  .tl-body .tag{display:inline-block;font-size:.7rem;font-weight:700;color:var(--berry);
+    background:var(--berry-soft);border-radius:6px;padding:1px 8px;margin-top:5px;margin-right:4px;}
+  .area-badge{display:inline-block;font-size:.67rem;font-weight:700;border-radius:6px;padding:1px 9px;margin-bottom:3px;}
+  .b-souko{background:var(--sky-soft);color:#3f7495;}
+  .b-majo{background:var(--plum-soft);color:var(--plum);}
+  .b-mono{background:#EDE4D6;color:var(--brown);}
+  .b-free{background:var(--lantern-soft);color:var(--lantern);}
+  .walkseg{display:flex;align-items:center;gap:8px;color:var(--brown);font-size:.78rem;font-weight:700;
+    padding:0 0 4px 18px;position:relative;border-left:3px dashed var(--line);margin-left:66px;}
+
+  /* ---------- boken card ---------- */
+  .boken{background:
+      repeating-linear-gradient(180deg, transparent 0 30px, rgba(122,90,58,.06) 30px 31px),
+      linear-gradient(160deg,#FFFDF6,#FDF6EA);
+    border:2.5px solid var(--lantern);border-radius:22px;padding:17px 17px 11px;
+    box-shadow:0 14px 30px -20px rgba(224,122,62,.75);position:relative;overflow:hidden;}
+  .boken::after{content:"🎠";position:absolute;right:-6px;bottom:-10px;font-size:4.2rem;opacity:.1;transform:rotate(-8deg);}
+  .boken .lead{font-family:'Yomogi',cursive;color:var(--berry);font-size:1.05rem;margin:0 0 10px;}
+  .quest{display:flex;align-items:center;gap:12px;padding:9px 6px;border-bottom:1px dashed var(--line);
+    cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent;}
+  .quest:last-of-type{border-bottom:none;}
+  .stamp{flex:0 0 auto;width:40px;height:40px;border-radius:50%;border:2.5px solid var(--leaf);background:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:transparent;
+    transition:transform .15s, background .15s, color .15s, border-color .15s;}
+  .quest .txt{flex:1;font-size:1rem;color:var(--forest-deep);font-weight:700;line-height:1.4;}
+  .quest .txt small{display:block;font-weight:500;color:var(--brown);font-size:.76rem;}
+  .quest .where{flex:0 0 auto;font-size:.66rem;font-weight:700;border-radius:6px;padding:1px 7px;}
+  .quest.done .stamp{background:var(--berry);border-color:var(--berry);color:#fff;transform:rotate(-12deg) scale(1.08);}
+  .quest.done .txt b{text-decoration:line-through;text-decoration-color:var(--lantern);}
+  .cheer{text-align:center;font-family:'Yomogi',cursive;color:var(--leaf);margin:12px 4px 4px;font-size:1.05rem;min-height:1.4em;}
+
+  /* ---------- train bingo ---------- */
+  .bingo{background:linear-gradient(160deg,#F3F8FA,#E9F2F6);border:2.5px solid var(--sky);
+    border-radius:22px;padding:17px;box-shadow:0 12px 26px -20px rgba(92,147,180,.7);}
+  .bingo .lead{font-family:'Yomogi',cursive;color:#3f7495;font-size:1.02rem;margin:0 0 11px;}
+  .bingo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+  .bcell{aspect-ratio:1;background:#fff;border:2px solid #C4DBE7;border-radius:14px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+    font-weight:800;color:var(--forest-deep);font-size:.82rem;cursor:pointer;user-select:none;
+    -webkit-tap-highlight-color:transparent;transition:background .15s,border-color .15s,transform .1s;text-align:center;padding:4px;}
+  .bcell .em{font-size:1.5rem;line-height:1.1;}
+  .bcell.hit{background:var(--gold-soft);border-color:var(--gold);transform:scale(.97);}
+  .bcell.hit::after{content:"⭐";font-size:.85rem;margin-top:-2px;}
+  .bingo-msg{text-align:center;font-family:'Yomogi',cursive;color:#3f7495;margin-top:10px;font-size:1rem;min-height:1.4em;}
+
+  /* ---------- tips ---------- */
+  .tips{list-style:none;margin:0;padding:0;}
+  .tips li{display:flex;gap:12px;padding:10px 2px;border-bottom:1px dashed var(--line);font-size:.9rem;}
+  .tips li:last-child{border-bottom:none;}
+  .tips .ic{flex:0 0 auto;font-size:1.2rem;line-height:1.5;}
+  .tips b{color:var(--forest-deep);}
+  .yen{color:var(--berry);font-weight:700;}
+  .pack{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+  .pack span{background:var(--leaf-soft);color:var(--forest-deep);font-weight:700;border-radius:999px;
+    padding:5px 14px;font-size:.85rem;border:1px solid #D8E4C8;}
+
+  .closing{margin-top:34px;text-align:center;background:linear-gradient(160deg,var(--forest),var(--forest-deep));
+    color:#FDFBF3;border-radius:24px;padding:26px 22px;box-shadow:0 16px 34px -22px rgba(31,68,52,.8);}
+  .closing .hand{font-family:'Yomogi',cursive;font-size:1.4rem;color:var(--gold);}
+  .closing p{margin:8px 0 0;font-size:.95rem;opacity:.92;}
+  .foot{margin-top:22px;text-align:center;font-size:.72rem;color:var(--brown);line-height:1.9;}
+
+  @media (max-width:500px){
+    .cover h1{font-size:1.72rem;}
+    .facts,.plan2{grid-template-columns:1fr;}
+    .leg{grid-template-columns:68px 1fr;padding:9px 14px;}
+    .tl-item{grid-template-columns:50px 1fr;gap:9px;}
+    .walkseg{margin-left:56px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+  @media print{
+    body{background:#fff;}
+    .wrap{max-width:100%;padding:0;}
+    .cover,.boken,.bingo,.closing,.card,.mapcard,.qa{box-shadow:none;}
+    .cheer,.bingo-msg{display:none;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ======== COVER ======== -->
+  <div class="cover">
+    <svg class="scene" viewBox="0 0 740 250" role="img" aria-label="ジブリパークへ向かう汽車と森の風景">
+      <defs>
+        <linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#DCEBF2"/><stop offset="1" stop-color="#F2F6F0"/>
+        </linearGradient>
+      </defs>
+      <rect width="740" height="250" fill="url(#skyg)"/>
+      <circle cx="632" cy="56" r="30" fill="#E7B547"/>
+      <circle cx="632" cy="56" r="30" fill="none" stroke="#F2D488" stroke-width="7" opacity=".55"/>
+      <g fill="#FDFBF3">
+        <ellipse cx="130" cy="52" rx="38" ry="17"/><ellipse cx="165" cy="45" rx="28" ry="14"/>
+        <ellipse cx="470" cy="38" rx="32" ry="15"/><ellipse cx="502" cy="45" rx="23" ry="12"/>
+      </g>
+      <!-- balloon -->
+      <g transform="translate(520,88)">
+        <path d="M0-26 C15-26 22-12 22 -2 C22 10 12 18 0 22 C-12 18 -22 10 -22 -2 C-22 -12 -15 -26 0 -26 Z" fill="#C64A3B"/>
+        <path d="M0-26 C6-26 10-12 10 -2 C10 10 5 18 0 22 C-5 18 -10 10 -10 -2 C-10 -12 -6 -26 0 -26 Z" fill="#E7B547"/>
+        <rect x="-6" y="26" width="12" height="9" rx="2.5" fill="#7A5A3A"/>
+        <path d="M-14 16 L-6 26 M14 16 L6 26" stroke="#7A5A3A" stroke-width="1.6"/>
+      </g>
+      <path d="M0 168 Q140 106 280 152 T560 138 T740 162 V250 H0 Z" fill="#9CC17A"/>
+      <path d="M0 196 Q180 132 360 180 T740 174 V250 H0 Z" fill="#77A057"/>
+      <g>
+        <g transform="translate(64,168)"><rect x="-4" y="10" width="8" height="28" fill="#7A5A3A"/><circle cx="0" cy="-3" r="22" fill="#4F7B4A"/><circle cx="-13" cy="9" r="15" fill="#5C8A52"/><circle cx="13" cy="9" r="15" fill="#5C8A52"/></g>
+        <g transform="translate(668,176)"><rect x="-4" y="8" width="8" height="26" fill="#7A5A3A"/><circle cx="0" cy="-2" r="19" fill="#4F7B4A"/><circle cx="-11" cy="7" r="13" fill="#5C8A52"/><circle cx="11" cy="7" r="13" fill="#5C8A52"/></g>
+        <g transform="translate(148,192)"><rect x="-3" y="6" width="6" height="18" fill="#7A5A3A"/><circle cx="0" cy="-1" r="13" fill="#5C8A52"/></g>
+      </g>
+      <path d="M0 226 H740" stroke="#B9A987" stroke-width="4"/>
+      <g stroke="#8A7853" stroke-width="3">
+        <path d="M30 220 V232"/><path d="M105 220 V232"/><path d="M180 220 V232"/><path d="M255 220 V232"/><path d="M330 220 V232"/><path d="M405 220 V232"/><path d="M480 220 V232"/><path d="M555 220 V232"/><path d="M630 220 V232"/><path d="M705 220 V232"/>
+      </g>
+      <g transform="translate(238,172)">
+        <rect x="0" y="8" width="168" height="46" rx="13" fill="#5C93B4"/>
+        <rect x="0" y="8" width="38" height="46" rx="13" fill="#E07A3E"/>
+        <rect x="50" y="17" width="28" height="19" rx="4" fill="#EAF1F4"/>
+        <rect x="88" y="17" width="28" height="19" rx="4" fill="#EAF1F4"/>
+        <rect x="126" y="17" width="28" height="19" rx="4" fill="#EAF1F4"/>
+        <circle cx="38" cy="58" r="10" fill="#37453B"/><circle cx="38" cy="58" r="4" fill="#FDFBF3"/>
+        <circle cx="130" cy="58" r="10" fill="#37453B"/><circle cx="130" cy="58" r="4" fill="#FDFBF3"/>
+        <circle cx="15" cy="0" r="6.5" fill="#E7B547"/>
+        <g fill="#FDFBF3" opacity=".85">
+          <circle cx="8" cy="-14" r="5"/><circle cx="-2" cy="-26" r="7"/><circle cx="-16" cy="-40" r="9"/>
+        </g>
+      </g>
+      <g transform="translate(586,202)"><ellipse cx="0" cy="4" rx="10" ry="13" fill="#B98A54"/><path d="M-10 -2 Q0 -13 10 -2 Z" fill="#7A5A3A"/><rect x="-1.5" y="-14" width="3" height="6" rx="1.5" fill="#7A5A3A"/></g>
+    </svg>
+    <div class="cover-inner">
+      <span class="eyebrow">🌳 はじめての ジブリパーク・大さんぽ 🌳</span>
+      <h1>ジブリパーク<br><span class="accent">だいさんぽ</span> しおり</h1>
+      <div class="datebar">
+        <span>📅 2026.7.4（土）</span><span>🎫 大さんぽ券スタンダード</span><span>🏭 9:00 大倉庫入場</span>
+      </div>
+      <div class="whom">たんけんたい：<b>とと</b>・<b>おくさん</b>・<b>むすめ（5さい）</b>／志賀本通から でんしゃの たび🚃</div>
+      <p class="note">きょうは 大倉庫から 魔女の谷まで だいさんぽ！<br>ネコバスに のって、メリーゴーランドに のって、あかい ひこうき「サボイア」にも あいにいくよ。</p>
+    </div>
+  </div>
+
+  <!-- ======== 1. OVERVIEW ======== -->
+  <section>
+    <div class="sec-head"><div class="sec-num">🧭</div>
+      <div><h2>きょうの めあて</h2><div class="sub">5エリア入場OK／建物内部（ハウルの城など）は対象外</div></div></div>
+    <div class="card">
+      <div class="facts">
+        <div class="fact"><div class="k">ひにち</div><div class="v">7月4日（土）9:00〜17:00開園</div></div>
+        <div class="fact"><div class="k">大倉庫にゅうじょう</div><div class="v">9:00（〜10:00までに入場）</div></div>
+        <div class="fact"><div class="k">きょうの本命</div><div class="v">🎠 魔女の谷 メリーゴーランド</div></div>
+        <div class="fact"><div class="k">かえるじかん</div><div class="v">17:00までに おうち</div></div>
+      </div>
+      <div class="route-chips">
+        <span class="ch">①ジブリの大倉庫</span><span class="ar">→</span>
+        <span class="ch">②魔女の谷</span><span class="ar">→</span>
+        <span class="ch">③もののけの里<small>（時間があれば）</small></span><span class="ar">→</span>
+        <span class="ch">④サボイア<small>（帰り道）</small></span>
+      </div>
+      <div class="rain">
+        <div class="big">☔️</div>
+        <div><b>大倉庫は屋内なので雨でも安心。</b>午後は屋外エリアを歩くため、折りたたみ傘・レインコート・着替えを。<span class="warn">雨の日はメリーゴーランド運休の可能性</span>があるので、当日朝に公式の運営状況ページで確認を（下のリンク）。</div>
+      </div>
+      <div class="lk-row">
+        <a class="lk" href="https://ghibli-park.jp/ticket/">チケット種類・できること（公式）</a>
+        <a class="lk" href="https://ghibli-park.jp/wait/">待ち時間・運営状況（公式・当日用）</a>
+        <a class="lk" href="https://ghibli-park.jp/info/info20260421.html">2026年7月〜のチケット変更（公式）</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 2. HONEST Q&A ======== -->
+  <section>
+    <div class="sec-head"><div class="sec-num">🤔</div>
+      <div><h2>ほんとに間に合う？の検証</h2><div class="sub">朝の30分は思ったより短い。正直に計算しました</div></div></div>
+    <div class="qa">
+      <div class="q"><span class="b">Q</span>9:00入場で、9:30までに「アリエッティ＋なりきり写真」はできる？</div>
+      <div class="a">
+        <b>8:45着では無理です。</b>9:00入場開始でも列が順に入るため、列の後方だと館内に入れるのは9:15〜9:20ごろ。一方、なりきり名場面展は開場30分で約30分待ちの行列になります。<br><br>
+        そこで作戦を変更：<b>朝の勝負は「なりきり名場面展」1本に絞ります。</b>実は<b>アリエッティ（床下の家と小人の庭）は空いている展示</b>で、通り抜け型なのでいつ行っても大丈夫。「混む2大スポット」の正体は、なりきり名場面展とお土産（冒険飛行団）＋カフェでした。
+      </div>
+      <div class="plan2">
+        <div class="plan reco">
+          <span class="badge">おすすめ｜早起きプラン</span>
+          <h4>8:10ごろ列に並ぶ</h4>
+          <ul>
+            <li>志賀本通 <b>6:55ごろ発</b></li>
+            <li>列の前方 → <b>9:00すぐ入場</b></li>
+            <li>なりきり展へ直行＝<b>ほぼ待ちゼロ</b>で家族写真</li>
+            <li>9:30 お土産開店に一番乗り</li>
+          </ul>
+        </div>
+        <div class="plan">
+          <span class="badge">ゆっくりプラン</span>
+          <h4>8:45ごろ到着</h4>
+          <ul>
+            <li>志賀本通 7:25ごろ発</li>
+            <li>入場は9:15〜9:20ごろ</li>
+            <li>なりきり展は<b>20〜30分待ち</b>を覚悟（午後は60〜90分待ちなので朝に並ぶ価値はあり）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="a" style="margin-top:10px;font-size:.85rem;">※以降のタイムラインは早起きプラン基準。列は屋根つき、待ち時間はしおり後半の「でんしゃビンゴ」や絵本で。トイレ・飲み物は北口広場のコンビニで済ませてから並ぶのがコツ。</div>
+    </div>
+  </section>
+
+  <!-- ======== 3. ACCESS ======== -->
+  <section>
+    <div class="sec-head"><div class="sec-num">🚃</div>
+      <div><h2>いきかた（電車）</h2><div class="sub">志賀本通 → 大倉庫｜乗車＋乗換＋徒歩で約70〜80分</div></div></div>
+    <div class="ticket">
+      <div class="depart">🚉 6:55ごろ 志賀本通を しゅっぱつ（ゆっくり派は 7:25）</div>
+      <div class="leg"><div class="stn">志賀本通<small>しがほんどおり</small></div>
+        <div><span class="line"><span class="pill p-meijo">名城線</span> 本山方面へ</span><div class="time">乗車 約13分</div></div></div>
+      <div class="leg"><div class="stn">本山<small>もとやま｜のりかえ</small></div>
+        <div><span class="line"><span class="pill p-higashi">東山線</span> 藤が丘ゆき</span><div class="time">乗車 約11分＋乗換</div></div></div>
+      <div class="leg"><div class="stn">藤が丘<small>ふじがおか｜のりかえ</small></div>
+        <div><span class="line"><span class="pill p-linimo">リニモ</span> 八草ゆき → 愛・地球博記念公園</span><div class="time">乗車 約13分（磁石で浮いて走るよ！）</div></div></div>
+      <div class="leg"><div class="stn">記念公園駅<small>2番出口・北口</small></div>
+        <div><span class="line"><span class="pill p-walk">とほ</span> エレベーター塔経由で大倉庫へ 約400m</span><div class="time">徒歩 約8分</div></div></div>
+      <div class="arrive">🏁 8:10ごろ とうちゃく → 大倉庫の列にならぶ</div>
+    </div>
+    <div class="backtrip">
+      <b>かえり：</b>サボイアのある「ロタンダ風ヶ丘」は北口＝駅の目の前。見終わったらそのまま駅へ。<span class="hl">15:00前後のリニモに乗れば16:15〜16:30ごろ帰宅</span>＝17時に余裕。<br>
+      <small>※ manaca / Suica などICカードは地下鉄もリニモもタッチOK。ドニチエコきっぷは地下鉄のみ有効でリニモは対象外。時刻は前日に乗換案内で最終確認を。</small>
+      <div class="lk-row">
+        <a class="lk" href="https://www.linimo.jp/">リニモ 時刻・運賃（公式）</a>
+        <a class="lk" href="https://www.kotsu.city.nagoya.jp/">名古屋市交通局（地下鉄）</a>
+        <a class="lk" href="https://ghibli-park.jp/access/">ジブリパークへのアクセス（公式）</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 4. PARK MAP ======== -->
+  <section>
+    <div class="sec-head"><div class="sec-num">🗺️</div>
+      <div><h2>園内 いどうマップ</h2><div class="sub">きょう歩くルートと徒歩時間の目安</div></div></div>
+    <div class="mapcard">
+      <svg viewBox="0 0 700 470" role="img" aria-label="ジブリパーク園内の移動マップ（イメージ）">
+        <defs>
+          <marker id="arw" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+            <path d="M0 0 L8 4 L0 8 Z" fill="#E07A3E"/>
+          </marker>
+        </defs>
+        <rect width="700" height="470" rx="14" fill="#EFF3E6"/>
+        <!-- greens -->
+        <ellipse cx="120" cy="420" rx="150" ry="70" fill="#DCE8CB"/>
+        <ellipse cx="600" cy="430" rx="140" ry="60" fill="#DCE8CB"/>
+        <ellipse cx="640" cy="120" rx="110" ry="80" fill="#DCE8CB"/>
+        <!-- pond hint -->
+        <ellipse cx="565" cy="300" rx="60" ry="26" fill="#CFE2EB"/>
+        <text x="565" y="305" font-size="11" text-anchor="middle" fill="#6E93A8">池</text>
+
+        <!-- ROUTE path (walking) -->
+        <path d="M355 66 L355 118" fill="none" stroke="#E07A3E" stroke-width="4" stroke-dasharray="7 6" marker-end="url(#arw)"/>
+        <path d="M340 168 C300 200 265 220 250 252" fill="none" stroke="#E07A3E" stroke-width="4" stroke-dasharray="7 6" marker-end="url(#arw)"/>
+        <path d="M225 322 C215 345 220 362 245 378" fill="none" stroke="#E07A3E" stroke-width="4" stroke-dasharray="7 6" marker-end="url(#arw)"/>
+        <path d="M310 400 C400 420 470 380 480 300 C486 240 450 160 400 96" fill="none" stroke="#E07A3E" stroke-width="4" stroke-dasharray="7 6" marker-end="url(#arw)"/>
+
+        <!-- walk labels -->
+        <g font-size="12" font-weight="700" fill="#B25A22">
+          <text x="374" y="100">🚶約8分</text>
+          <text x="300" y="215">🚶約5〜8分</text>
+          <text x="150" y="358">🚶約5分</text>
+          <text x="497" y="255">🚶約9分</text>
+        </g>
+
+        <!-- STATION -->
+        <g>
+          <rect x="290" y="18" width="130" height="48" rx="12" fill="#5C93B4"/>
+          <text x="355" y="38" font-size="14" font-weight="800" text-anchor="middle" fill="#fff">リニモ</text>
+          <text x="355" y="56" font-size="12" font-weight="700" text-anchor="middle" fill="#EAF3F8">愛・地球博記念公園駅</text>
+        </g>
+        <!-- ROTUNDA (next to station) -->
+        <g>
+          <rect x="440" y="26" width="188" height="52" rx="12" fill="#FBEADD" stroke="#E07A3E" stroke-width="2.5"/>
+          <text x="534" y="47" font-size="13" font-weight="800" text-anchor="middle" fill="#B25A22">④ロタンダ風ヶ丘 ✈️</text>
+          <text x="534" y="65" font-size="11" text-anchor="middle" fill="#8a5a30">サボイア展示・無料エリア・帰りに</text>
+          <path d="M440 52 L424 52" stroke="#E07A3E" stroke-width="3"/>
+        </g>
+
+        <!-- DAISOUKO -->
+        <g>
+          <rect x="260" y="118" width="190" height="52" rx="14" fill="#5C93B4"/>
+          <rect x="260" y="118" width="190" height="52" rx="14" fill="none" stroke="#3F7495" stroke-width="2.5"/>
+          <text x="355" y="140" font-size="15" font-weight="900" text-anchor="middle" fill="#fff">①ジブリの大倉庫</text>
+          <text x="355" y="159" font-size="11" font-weight="700" text-anchor="middle" fill="#E3F0F7">9:00入場・屋内・再入場×</text>
+        </g>
+
+        <!-- SEISHUN (pass by) -->
+        <g opacity=".8">
+          <rect x="470" y="120" width="120" height="40" rx="10" fill="#EDE9DC" stroke="#C9BE9F" stroke-width="1.5"/>
+          <text x="530" y="137" font-size="11" font-weight="700" text-anchor="middle" fill="#7A5A3A">青春の丘</text>
+          <text x="530" y="152" font-size="10" text-anchor="middle" fill="#9A8460">駅の近く・外観のみ</text>
+        </g>
+
+        <!-- MAJO -->
+        <g>
+          <rect x="130" y="252" width="200" height="70" rx="14" fill="#8A56A6"/>
+          <text x="230" y="278" font-size="15" font-weight="900" text-anchor="middle" fill="#fff">②魔女の谷 🎠</text>
+          <text x="230" y="296" font-size="11" font-weight="700" text-anchor="middle" fill="#F0E6F6">メリーゴーランド・ハウルの城</text>
+          <text x="230" y="312" font-size="11" font-weight="700" text-anchor="middle" fill="#F0E6F6">再入場OK（手にスタンプ）</text>
+        </g>
+
+        <!-- MONONOKE -->
+        <g>
+          <rect x="235" y="352" width="196" height="56" rx="14" fill="#8B6F4E"/>
+          <text x="333" y="376" font-size="14" font-weight="900" text-anchor="middle" fill="#fff">③もののけの里</text>
+          <text x="333" y="394" font-size="10.5" font-weight="700" text-anchor="middle" fill="#F0E8DC">タタリ神・タタラ場｜時間があれば</text>
+        </g>
+
+        <!-- DONDOKO far -->
+        <g opacity=".75">
+          <rect x="520" y="408" width="150" height="42" rx="10" fill="#EDE9DC" stroke="#C9BE9F" stroke-width="1.5"/>
+          <text x="595" y="425" font-size="11" font-weight="700" text-anchor="middle" fill="#7A5A3A">どんどこ森</text>
+          <text x="595" y="441" font-size="10" text-anchor="middle" fill="#9A8460">遠い（徒歩20分超）今回は行かない</text>
+        </g>
+
+        <!-- compass -->
+        <g transform="translate(52,52)">
+          <circle r="24" fill="#FDFBF3" stroke="#B9A987" stroke-width="2"/>
+          <path d="M0 -15 L5 4 L0 0 L-5 4 Z" fill="#C64A3B"/>
+          <text y="20" font-size="10" text-anchor="middle" fill="#7A5A3A">N</text>
+        </g>
+      </svg>
+      <div class="maplegend">
+        <span><span class="dot" style="background:#5C93B4"></span>屋内・駅まわり</span>
+        <span><span class="dot" style="background:#8A56A6"></span>魔女の谷</span>
+        <span><span class="dot" style="background:#8B6F4E"></span>もののけの里</span>
+        <span><span class="dot" style="background:#E07A3E"></span>きょうのルート（🚶徒歩）</span>
+      </div>
+      <div class="mapnote">※位置関係のイメージ図で、縮尺・形状は正確ではありません。現地では大倉庫と魔女の谷のインフォメーションで無料の公式紙マップがもらえます（1グループ1部）。</div>
+      <div class="lk-row">
+        <a class="lk" href="https://ghibli-park.jp/guide/">利用のご案内（公式）</a>
+        <a class="lk" href="https://www.aichi-koen.com/moricoro/">愛・地球博記念公園 園内マップ（公式）</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 5. TIMELINE ======== -->
+  <section>
+    <div class="sec-head"><div class="sec-num">⏰</div>
+      <div><h2>当日の まわりかた</h2><div class="sub">8:10 列にならぶ → 15:00 リニモ乗車</div></div></div>
+    <div class="card">
+      <div class="tl">
+        <div class="tl-item star"><div class="tl-time">8:10</div>
+          <div class="tl-body"><div class="tl-dot"></div>
+            <span class="area-badge b-souko">ジブリの大倉庫・入場列</span>
+            <h3>列にならぶ（トイレは北口で先に）</h3>
+            <p>屋根つきの列。待ち時間は「でんしゃビンゴ」の続きや、なりきり展のポーズ会議で。飲み物は北口のコンビニで調達OK。</p></div></div>
+
+        <div class="tl-item star"><div class="tl-time">9:00</div>
+          <div class="tl-body"><div class="tl-dot"></div>
+            <span class="area-badge b-souko">ジブリの大倉庫</span>
+            <h3>入場 → なりきり名場面展へ直行 📸</h3>
+            <p>入ってすぐ左。朝一ならほぼ待ちゼロ、30分後には30分待ちになる一番の混雑スポットです。カオナシの隣に座る『千と千尋』シーンなど、家族で名場面になりきって撮影（〜9:30）。</p>
+            <span class="tag">きょう一番の勝負どころ</span></div></div>
+
+        <div class="tl-item"><div class="tl-time">9:30</div>
+          <div class="tl-body"><div class="tl-dot"></div>
+            <span class="area-badge b-souko">ジブリの大倉庫</span>
+            <h3>冒険飛行団で お土産 🛍️</h3>
+            <p>開店直後に入店。<b>奥さんの限定みやげミッション</b>はここで。人気グッズは午前に売り切れることも。館内ロッカーは無いので本命にしぼって（魔女の谷のショップにも限定品あり）。</p></div></div>
+
+        <div class="tl-item"><div class="tl-time">10:00</div>
+          <div class="tl-body"><div class="tl-dot"></div>
+            <span class="area-badge b-souko">ジブリの大倉庫</span>
+            <h3>むすめの だいすきゾーン めぐり</h3>
+            <p>ネコバスルーム（子どもだけ乗れる）→ <b>床下の家と小人の庭（アリエッティ）はここでゆっくり</b>（実は空いてる穴場）→ 天空の庭のロボット兵 → 中央階段で記念写真 → 子どもの街・南街。</p></div></div>
+
+        <div class="tl-item star"><div class="tl-time">11:00</div>
+          <div class="tl-body"><div class="tl-dot"></div>
+            <span class="area-badge b-souko">ジブリの大倉庫</span>
+            <h3>早めのお昼 → 11:50 退場</h3>
+            <p>カフェ「大陸横断飛行」（10:30開店・サンドやピザ）は正午前に大行列になるので11時前に並ぶのが正解。軽めならミルクスタンドの牛乳＋シベリアでも。<b>大倉庫は再入場不可</b>＝食事・トイレ・買い忘れチェックをして退場。</p>
+            <span class="tag">再入場できません</span></div></div>
+
+        <div class="walkseg">🚶 徒歩 約5〜8分（約400m）</div>
+
+        <div class="tl-item majo"><div class="tl-time">12:00</div>
+          <div class="tl-body"><div class="tl-dot"></div>
+            <span class="area-badge b-majo">魔女の谷</span>
+            <h3>とうちゃく → まず“のりもの券” 🎫</h3>
+            <p><b>オキノ邸前の「小さな小屋」でメリーゴーランドの のりもの券を先に購入</b>（混雑日は販売終了もあるため最優先）。<span class="yen">子ども500円／大人1,000円</span>。買っておけば好きなタイミングで乗れます。</p></div></div>
+
+        <div class="tl-item majo"><div class="tl-time">12:15</div>
+          <div class="tl-body"><div class="tl-dot"></div>
+            <span class="area-badge b-majo">魔女の谷</span>
+            <h3>🎠 メリーゴーランド → 街あるき</h3>
+            <p>待ちは通常5〜10分。キキのほうき＋ジジ、ヤックル、山犬…どれに乗る？ BGMは「人生のメリーゴーランド」特別アレンジ。そのあとはハウルの城・グーチョキパン屋・時計塔・魔女の口すべり台を外観＆通路で散策。ショップ「13人の魔女団」は順路の奥なので先に寄るのも手。</p>
+            <span class="tag">再入場OK（手にスタンプ）</span></div></div>
+
+        <div class="walkseg">🚶 徒歩 約5分（となりのエリア）</div>
+
+        <div class="tl-item"><div class="tl-time">13:45</div>
+          <div class="tl-body"><div class="tl-dot"></div>
+            <span class="area-badge b-mono">もののけの里</span>
+            <h3>（時間があれば）もののけの里</h3>
+            <p>魔女の谷のすぐ隣。タタリ神のオブジェ、タタラ場、乙事主のすべり台（子ども専用・雨天中止あり）。滞在30分目安のコンパクトなエリア。<b>押していたら迷わずカット</b>してOK。</p></div></div>
+
+        <div class="walkseg">🚶 徒歩 約9分（駅方面へ）</div>
+
+        <div class="tl-item"><div class="tl-time">14:25</div>
+          <div class="tl-body"><div class="tl-dot"></div>
+            <span class="area-badge b-free">北口広場（無料エリア）</span>
+            <h3>✈️ サボイアに あいにいく</h3>
+            <p>駅前カフェテリア「ロタンダ風ヶ丘」に『紅の豚』の飛行艇サボイアS-21が実物大でドーン。<b>入店は大人1人1オーダー制（子ども不要）</b>なので、ミートボールナポリタンやドリンクでおやつ休憩しながら間近で。営業10:00〜18:00。</p></div></div>
+
+        <div class="tl-item star"><div class="tl-time">15:00</div>
+          <div class="tl-body"><div class="tl-dot"></div>
+            <span class="area-badge b-free">リニモ駅</span>
+            <h3>リニモに乗って おうちへ 👋</h3>
+            <p>駅は目の前。逆ルートで16:15〜16:30ごろ帰宅、17時に余裕でゴール！</p></div></div>
+      </div>
+      <div class="lk-row">
+        <a class="lk" href="https://ghibli-park.jp/">ジブリパーク公式サイト（各エリア紹介）</a>
+        <a class="lk" href="https://ghibli-park.jp/about/majonotani.html">魔女の谷・メリーゴーランド詳細（公式）</a>
+        <a class="lk" href="https://ghibli-park.jp/park/">ロタンダ風ヶ丘（公式）</a>
+        <a class="lk" href="https://ghibli-park.jp/info/info20251031.html">サボイアS-21展示のお知らせ（公式）</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== 6. BOKEN CARD ======== -->
+  <section>
+    <div class="sec-head"><div class="sec-num">🔍</div>
+      <div><h2>みつけてみよう！ぼうけんカード</h2><div class="sub">できたら タップして はんこ ポン！（印刷なら○に色ぬり）</div></div></div>
+    <div class="boken">
+      <p class="lead">むすめちゃんへ。きょうの ７つの ミッションだよ。ぜんぶ できるかな？</p>
+      <div class="quest" data-q><div class="stamp">✓</div><div class="txt"><b>めいばめんで なりきり しゃしん</b><small>あさいちばんに いくよ！ポーズは でんしゃで れんしゅう📸</small></div><span class="where b-souko">大倉庫</span></div>
+      <div class="quest" data-q><div class="stamp">✓</div><div class="txt"><b>ネコバスに のる</b><small>『となりのトトロ』の ふわふわバス（こどもだけ！）</small></div><span class="where b-souko">大倉庫</span></div>
+      <div class="quest" data-q><div class="stamp">✓</div><div class="txt"><b>こびとの おうちを のぞく</b><small>『アリエッティ』の 床下の ちいさな せかい</small></div><span class="where b-souko">大倉庫</span></div>
+      <div class="quest" data-q><div class="stamp">✓</div><div class="txt"><b>ロボットへいを みつける</b><small>『天空の城ラピュタ』の そらの にわ</small></div><span class="where b-souko">大倉庫</span></div>
+      <div class="quest" data-q><div class="stamp">✓</div><div class="txt"><b>メリーゴーランドに のる 🎠</b><small>キキのほうき？ヤックル？どれに のるか きめておこう</small></div><span class="where b-majo">魔女の谷</span></div>
+      <div class="quest" data-q><div class="stamp">✓</div><div class="txt"><b>まじょの口を くぐる</b><small>おおきな くちの トンネル。おくには すべりだい！</small></div><span class="where b-majo">魔女の谷</span></div>
+      <div class="quest" data-q><div class="stamp">✓</div><div class="txt"><b>あかい ひこうき サボイアに あう</b><small>『紅の豚』の ひこうてい。かえりみちの おたのしみ✈️</small></div><span class="where b-free">北口</span></div>
+      <div class="cheer" id="cheer"></div>
+    </div>
+  </section>
+
+  <!-- ======== 7. TRAIN BINGO ======== -->
+  <section>
+    <div class="sec-head"><div class="sec-num">🚄</div>
+      <div><h2>でんしゃビンゴ</h2><div class="sub">いきの でんしゃ＆待ち時間で あそぼう（タテ・ヨコ・ナナメ そろうかな？）</div></div></div>
+    <div class="bingo">
+      <p class="lead">まどの そとを よーく みてね。みつけたら タップ！</p>
+      <div class="bingo-grid">
+        <div class="bcell" data-b><span class="em">🚧</span>ふみきり</div>
+        <div class="bcell" data-b><span class="em">🐦</span>とり</div>
+        <div class="bcell" data-b><span class="em">🗼</span>てっとう</div>
+        <div class="bcell" data-b><span class="em">🚗</span>あかい くるま</div>
+        <div class="bcell" data-b><span class="em">🌉</span>はし</div>
+        <div class="bcell" data-b><span class="em">🏫</span>がっこう</div>
+        <div class="bcell" data-b><span class="em">🚌</span>バス</div>
+        <div class="bcell" data-b><span class="em">⛰️</span>やま</div>
+        <div class="bcell" data-b><span class="em">🚉</span>すれちがう でんしゃ</div>
+      </div>
+      <div class="bingo-msg" id="bmsg"></div>
+    </div>
+  </section>
+
+  <!-- ======== 8. TIPS ======== -->
+  <section>
+    <div class="sec-head"><div class="sec-num">📌</div>
+      <div><h2>おすすめ＆当日ポイント</h2><div class="sub">パパ・ママ向けメモ｜各項目に公式リンク付き</div></div></div>
+    <div class="card">
+      <ul class="tips">
+        <li><span class="ic">🎠</span><div><b>メリーゴーランドは「のりもの券を先に買う」が鉄則。</b>オキノ邸前の小さな小屋で購入（<span class="yen">子500円／大1,000円</span>・2歳以下無料）。混雑日は販売終了あり、荒天時は運休。<div class="lk-row"><a class="lk" href="https://ghibli-park.jp/about/majonotani.html">乗り物の料金・注意（公式）</a><a class="lk" href="https://ghibli-park.jp/wait/">当日の運営状況（公式）</a></div></div></li>
+        <li><span class="ic">🏛️</span><div><b>スタンダード券で入れない場所：</b>オキノ邸・ハウルの城・魔女の家の内部（＋地球屋・サツキとメイの家）。外観と街並みだけでも十分楽しめる想定のプランです。中を見たくなったら当日入場券（小さな小屋付近で販売・売切あり）という手も。<div class="lk-row"><a class="lk" href="https://ghibli-park.jp/ticket/">チケット別のできること（公式）</a></div></div></li>
+        <li><span class="ic">🛍️</span><div><b>大倉庫は再入場不可＆ロッカー無し。</b>お土産・食事・トイレは退場前に完結を。人気グッズは午前中に売り切れることがあるので9:30の開店直後が勝負。荷物が増えたら駅の北口案内所のコインロッカーも。<div class="lk-row"><a class="lk" href="https://ghibli-park.jp/ticket/">再入場ルール（公式）</a></div></div></li>
+        <li><span class="ic">🍽️</span><div><b>お昼は11時前にカフェへ並ぶ。</b>「大陸横断飛行」は10:30開店、正午は大行列。園内は飲食持ち込みNG（水筒・ペットボトルはOK）。<div class="lk-row"><a class="lk" href="https://ghibli-park.jp/guide/">利用のご案内・飲食ルール（公式）</a></div></div></li>
+        <li><span class="ic">✈️</span><div><b>サボイアS-21は2025年11月からロタンダ風ヶ丘に常設展示。</b>無料エリアなのでチケット不要、ただし入店は大人1人1オーダー制。閉店前の15時以降は比較的すいているという情報も＝帰り道にちょうどいい。<div class="lk-row"><a class="lk" href="https://ghibli-park.jp/info/info20251031.html">展示の公式お知らせ</a><a class="lk" href="https://ghibli-park.jp/park/">ロタンダ風ヶ丘 営業時間（公式）</a></div></div></li>
+        <li><span class="ic">🌂</span><div><b>7月＝暑い＆にわか雨シーズン。</b>帽子・タオル・水分・折りたたみ傘を。傘・ベビーカーは各建物内に持ち込めません（置き場あり）。舗装されていない道もあるので歩きやすいスニーカーで。</div></li>
+        <li><span class="ic">📸</span><div><b>写真はフラッシュNG・一部撮影禁止エリアあり</b>（食べものになった展示など）。なりきり名場面展はしっかり撮れます。</div></li>
+        <li><span class="ic">🎬</span><div><b>雨や疲れのときの避難先：</b>大倉庫の映像展示室「オリヲン座」で三鷹の森ジブリ美術館の短編上映（涼しい・座れる・約15〜20分）。ただし大倉庫退場後は戻れない点だけ注意。</div></li>
+      </ul>
+    </div>
+    <div class="card">
+      <b style="color:var(--forest-deep)">🎒 もちもの チェック</b>
+      <div class="pack">
+        <span>入場チケット（QR）</span><span>ICカード</span><span>のりもの券用の現金/カード</span><span>折りたたみ傘/レインコート</span>
+        <span>飲みもの</span><span>帽子・タオル</span><span>着替え</span><span>おかし少し</span>
+        <span>モバイルバッテリー</span><span>エコバッグ</span><span>このしおり</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======== CLOSING ======== -->
+  <div class="closing">
+    <div class="hand">いってらっしゃい！すてきな だいさんぽを 🌳</div>
+    <p>あさは なりきり写真、ひるは メリーゴーランド、かえりは 赤い飛行艇。<br>17:00までに おうちへ。家族みんなの いちにちに なりますように。</p>
+  </div>
+
+  <div class="foot">
+    このしおりは2026年7月時点の公開情報をもとに作成しています。待ち時間・営業時間・運行は変動するため、当日は公式の運営状況ページ（ghibli-park.jp/wait/）を活用してください。<br>
+    電車の時刻は乗換案内アプリで前日に最終確認を。© しおり本文はオリジナル作成です。
+  </div>
+
+</div>
+
+<script>
+  (function(){
+    // boken card
+    var quests=document.querySelectorAll('[data-q]');
+    var cheer=document.getElementById('cheer');
+    var cheers=['いいちょうし！','やったね！','すごい すごい！','はんぶん こえた！','あと すこし！','ラスト 1つ！'];
+    function upd(){
+      var done=document.querySelectorAll('.quest.done').length;
+      if(done===0){cheer.textContent='';return;}
+      if(done===quests.length){cheer.textContent='🎉 ミッション オール クリア！だいさんぽ めいじん！ 🎉';}
+      else{cheer.textContent=cheers[Math.min(done-1,cheers.length-1)]+'（'+done+'/'+quests.length+'）';}
+    }
+    quests.forEach(function(q){q.addEventListener('click',function(){q.classList.toggle('done');upd();});});
+
+    // train bingo
+    var cells=document.querySelectorAll('[data-b]');
+    var msg=document.getElementById('bmsg');
+    var lines=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    function bingoCheck(){
+      var st=[].map.call(cells,function(c){return c.classList.contains('hit');});
+      var n=lines.filter(function(l){return l.every(function(i){return st[i];});}).length;
+      var hits=st.filter(Boolean).length;
+      if(n>0){msg.textContent='🎊 ビンゴ '+n+'こ！すごーい！ 🎊';}
+      else if(hits>0){msg.textContent='みつけた：'+hits+'こ！';}
+      else{msg.textContent='';}
+    }
+    cells.forEach(function(c){c.addEventListener('click',function(){c.classList.toggle('hit');bingoCheck();});});
+  })();
+</script>
+</body>
+</html>
